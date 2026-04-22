@@ -22,4 +22,4 @@ To run the code find the terminal and type this streamlit run App.py
 • GitHub Repository Link
 (https://github.com/dindorcanabano-png/D_Portfolio-)
 • Streamlit Live App Link
-(Your deployed and fully functional web application)
+(https://czwwpi9aunpemdsaczglux.streamlit.app/)
