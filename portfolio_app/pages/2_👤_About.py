@@ -93,23 +93,19 @@ h1, h2, h3 {
         text-align: center !important;
     }
 
-    /* STACK MAIN COLUMNS */
     [data-testid="column"] {
         width: 100% !important;
         flex: 100% !important;
     }
 
-    /* CERT GRID STACK */
     .cert-card {
         margin-bottom: 1rem;
     }
 
-    /* TIMELINE STACK FIX */
     div[style*="display:flex; gap:1rem"] {
         flex-direction: column !important;
     }
 
-    /* INFO ALIGN FIX */
     div[style*="justify-content:space-between"] {
         flex-direction: column !important;
         align-items: flex-start !important;
@@ -119,7 +115,7 @@ h1, h2, h3 {
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- HEADER (UNCHANGED) ----------------
+# ---------------- HEADER ----------------
 st.markdown("""
 <p style="
     font-family:'Syne',sans-serif;
@@ -144,7 +140,7 @@ st.markdown("""
 <hr style="border-color:#00FF89; margin-bottom:2rem;">
 """, unsafe_allow_html=True)
 
-# ---------------- LAYOUT (UNCHANGED) ----------------
+# ---------------- LAYOUT ----------------
 col_bio, col_info = st.columns([1.5, 1], gap="large")
 
 with col_bio:
@@ -174,7 +170,6 @@ with col_bio:
               color:#00FF89;">Education Timeline</p>
     """, unsafe_allow_html=True)
 
-    
     timeline_items = [
         ("2024", "Hackathon Participant",
          "Participated in a hackathon contributing to visuals and presentation."),
@@ -183,22 +178,6 @@ with col_bio:
         ("2026", "Student Programmer / Editor",
          "Currently studying programming and doing editing tasks.")
     ]
-    with col_info:
-    st.markdown("""
-    <div style="background:#13131f; border:1px solid #2a2a3e;
-                border-radius:16px; padding:1.75rem;">
-        <p style="color:#00FF89; font-weight:700;">Quick Info</p>
-    """, unsafe_allow_html=True)
-
-    info_items = [
-        ("Role", "Student Developer"),
-        ("Degree", "Computer Science"),
-        ("Focus", "Full-Stack Development"),
-        ("Location", "Philippines"),
-        ("Status", "Open to Opportunities"),
-    ]
-
-    for label, value in info_items:
 
     for year, title, desc in timeline_items:
         st.markdown(f"""
@@ -215,10 +194,12 @@ with col_bio:
             </div>
         </div>
         """, unsafe_allow_html=True)
+
 with col_info:
     st.markdown("""
     <div style="background:#13131f; border:1px solid #2a2a3e;
                 border-radius:16px; padding:1.75rem;">
+        <p style="color:#00FF89; font-weight:700;">Quick Info</p>
     """, unsafe_allow_html=True)
 
     info_items = [
@@ -240,7 +221,7 @@ with col_info:
 
     st.markdown("</div>", unsafe_allow_html=True)
 
-# ---------------- CERTIFICATES (UNCHANGED) ----------------
+# ---------------- CERTIFICATES ----------------
 st.markdown("<div class='cert-title'>Certificates</div>", unsafe_allow_html=True)
 
 certs = [
