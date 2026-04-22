@@ -174,28 +174,31 @@ with col_bio:
               color:#00FF89;">Education Timeline</p>
     """, unsafe_allow_html=True)
 
+    
     timeline_items = [
-        ("2024", "Hackathon Participant", "Participated in hackathon."),
-        ("2025", "Hackathon Team Member", "Team contribution."),
-        ("2026", "Student Programmer", "Currently studying programming.")
+        ("2024", "Hackathon Participant",
+         "Participated in a hackathon contributing to visuals and presentation."),
+        ("2025", "Hackathon Team Member",
+         "Continued participation as a defender in the event of bank hacking."),
+        ("2026", "Student Programmer / Editor",
+         "Currently studying programming and doing editing tasks.")
     ]
 
     for year, title, desc in timeline_items:
         st.markdown(f"""
         <div style="display:flex; gap:1rem; margin-bottom:1rem;">
             <div style="min-width:64px; text-align:right;">
-                <span style="color:#00FF89;">{year}</span>
+                <span style="color:#00FF89; font-weight:700;">{year}</span>
             </div>
             <div style="width:10px; height:10px; border-radius:50%;
                         background:#00FF89; margin-top:4px;"></div>
             <div style="background:#13131f; border:1px solid #2a2a3e;
                         border-radius:10px; padding:0.9rem; flex:1;">
-                <p style="color:#e8e6f0; margin:0;">{title}</p>
+                <p style="color:#e8e6f0; font-weight:700; margin:0;">{title}</p>
                 <p style="color:#6b6b8a; font-size:0.82rem; margin:0;">{desc}</p>
             </div>
         </div>
         """, unsafe_allow_html=True)
-
 with col_info:
     st.markdown("""
     <div style="background:#13131f; border:1px solid #2a2a3e;
