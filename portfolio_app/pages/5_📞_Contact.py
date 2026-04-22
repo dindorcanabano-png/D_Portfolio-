@@ -256,7 +256,7 @@ with col_info:
                     {handle}
                 </p>
             </div>
-        </div>
+        </div>s
         """, unsafe_allow_html=True)
 
     st.markdown("""
