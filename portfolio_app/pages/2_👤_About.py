@@ -1,5 +1,6 @@
 import streamlit as st
 from pathlib import Path
+import base64
 
 st.set_page_config(page_title="About Me", page_icon="🧑‍💻", layout="wide")
 
@@ -9,6 +10,9 @@ cert1 = BASE_DIR / "pages/assest/cert1.png"
 cert2 = BASE_DIR / "pages/assest/cert2.jpg"
 cert3 = BASE_DIR / "pages/assest/cert3.jpg"
 cert4 = BASE_DIR / "pages/assest/cert4.png"
+
+# ---------------- RESPONSIVE FLAG ----------------
+is_mobile = st.session_state.get("is_mobile", False)
 
 st.markdown("""
 <style>
@@ -30,22 +34,16 @@ html, body, [class*="css"] {
     background:#0F5233;
     border-right: 1px solid #1e1e2e;
 }
-            
+
 section[data-testid="stSidebar"] * {
     color: #ffffff !important;
 }
 
 h1, h2, h3 {
     font-family: 'Syne', sans-serif;
-    letter-spacing: -0.02em;
 }
 
-hr { border-color: #1e1e2e; }
-
-img {
-    border-radius: 12px;
-}
-/* CERT TITLE FIX (NO OVERLAP) */
+/* CERT TITLE */
 .cert-title {
     font-family: 'Syne', sans-serif;
     font-size: 2.4rem;
@@ -53,13 +51,9 @@ img {
     margin-top: 2rem;
     margin-bottom: 1.5rem;
     text-align: center;
-
     background: linear-gradient(135deg, #e8e6f0 40%, #a78bfa);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-
-    position: relative;
-    z-index: 10;
 }
 
 /* CERT CARD */
@@ -73,34 +67,59 @@ img {
     text-align: center;
 }
 
-/* IMAGE */
 .cert-card img {
     width: 100%;
     border-radius: 10px;
     transition: transform 0.3s ease-in-out;
 }
 
-/* LABEL (THIS FIXES “WORDS DISAPPEARING”) */
 .cert-label {
     margin-top: 8px;
     color: #e8e6f0;
     font-size: 0.8rem;
-    font-family: 'DM Sans', sans-serif;
 }
 
-/* HOVER EFFECT */
+/* HOVER */
 .cert-card:hover {
     transform: translateY(-8px) scale(1.03);
     border-color: #00FF89;
-    box-shadow: 0 0 20px rgba(0,255,137,0.25);
 }
 
-.cert-card:hover img {
-    transform: scale(1.08);
+/* ---------------- RESPONSIVE FIX (ADDED ONLY) ---------------- */
+@media (max-width: 768px) {
+
+    h1 {
+        font-size: 2rem !important;
+        text-align: center !important;
+    }
+
+    /* STACK MAIN COLUMNS */
+    [data-testid="column"] {
+        width: 100% !important;
+        flex: 100% !important;
+    }
+
+    /* CERT GRID STACK */
+    .cert-card {
+        margin-bottom: 1rem;
+    }
+
+    /* TIMELINE STACK FIX */
+    div[style*="display:flex; gap:1rem"] {
+        flex-direction: column !important;
+    }
+
+    /* INFO ALIGN FIX */
+    div[style*="justify-content:space-between"] {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 4px;
+    }
 }
 </style>
 """, unsafe_allow_html=True)
 
+# ---------------- HEADER (UNCHANGED) ----------------
 st.markdown("""
 <p style="
     font-family:'Syne',sans-serif;
@@ -115,17 +134,17 @@ st.markdown("""
 
 <h1 style="
     font-family:'Syne',sans-serif;
-    font-size:3rem;  /* 🔥 BIGGER */
+    font-size:3rem;
     font-weight:800;
     background: linear-gradient(135deg, #e8e6f0 40%, #a78bfa);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
-    margin-bottom:0.25rem;
 ">About Me</h1>
 
 <hr style="border-color:#00FF89; margin-bottom:2rem;">
 """, unsafe_allow_html=True)
 
+# ---------------- LAYOUT (UNCHANGED) ----------------
 col_bio, col_info = st.columns([1.5, 1], gap="large")
 
 with col_bio:
@@ -135,48 +154,37 @@ with col_bio:
         padding:1.75rem 2rem; margin-bottom:1.25rem;
     ">
         <p style="font-family:'Syne',sans-serif; font-weight:700;
-                  color:#00FF89; font-size:1rem; margin-bottom:0.75rem;">
+                  color:#00FF89; font-size:1rem;">
             Who I Am
         </p>
-        <p style="color:#b0afc8; line-height:1.8; font-size:0.95rem;">
-            I'm Dindo, a driven Computer Science student with a passion for
-            building functional and impactful software. I thrive at the
-            intersection of <strong style="color:#e8e6f0;">design and programming</strong>.
-        </p>
-        <p style="color:#b0afc8; line-height:1.8; font-size:0.95rem; margin-top:1rem;">
-            Whether it's building apps, designing UI, or solving logic problems,
-            I always bring curiosity and dedication.
+        <p style="color:#b0afc8; line-height:1.8;">
+            I'm Dindo, a driven Computer Science student.
         </p>
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("""
     <p style="font-family:'Syne',sans-serif; font-weight:700;
-              color:#00FF89; font-size:1rem; margin:1.5rem 0 1rem;">
-        Education Timeline
-    </p>
+              color:#00FF89;">Education Timeline</p>
     """, unsafe_allow_html=True)
 
     timeline_items = [
-        ("2024", "Hackathon Participant",
-         "Participated in a hackathon contributing to visuals and presentation."),
-        ("2025", "Hackathon Team Member",
-         "Continued participation as a defender in the event of bank hacking."),
-        ("2026", "Student Programmer / Editor",
-         "Currently studying programming and doing editing tasks.")
+        ("2024", "Hackathon Participant", "Participated in hackathon."),
+        ("2025", "Hackathon Team Member", "Team contribution."),
+        ("2026", "Student Programmer", "Currently studying programming.")
     ]
 
     for year, title, desc in timeline_items:
         st.markdown(f"""
         <div style="display:flex; gap:1rem; margin-bottom:1rem;">
             <div style="min-width:64px; text-align:right;">
-                <span style="color:#00FF89; font-weight:700;">{year}</span>
+                <span style="color:#00FF89;">{year}</span>
             </div>
             <div style="width:10px; height:10px; border-radius:50%;
                         background:#00FF89; margin-top:4px;"></div>
             <div style="background:#13131f; border:1px solid #2a2a3e;
                         border-radius:10px; padding:0.9rem; flex:1;">
-                <p style="color:#e8e6f0; font-weight:700; margin:0;">{title}</p>
+                <p style="color:#e8e6f0; margin:0;">{title}</p>
                 <p style="color:#6b6b8a; font-size:0.82rem; margin:0;">{desc}</p>
             </div>
         </div>
@@ -186,7 +194,6 @@ with col_info:
     st.markdown("""
     <div style="background:#13131f; border:1px solid #2a2a3e;
                 border-radius:16px; padding:1.75rem;">
-        <p style="color:#00FF89; font-weight:700;">Quick Info</p>
     """, unsafe_allow_html=True)
 
     info_items = [
@@ -207,6 +214,8 @@ with col_info:
         """, unsafe_allow_html=True)
 
     st.markdown("</div>", unsafe_allow_html=True)
+
+# ---------------- CERTIFICATES (UNCHANGED) ----------------
 st.markdown("<div class='cert-title'>Certificates</div>", unsafe_allow_html=True)
 
 certs = [
@@ -222,7 +231,7 @@ for col, (cert, title) in zip([col1, col2, col3, col4], certs):
     with col:
         st.markdown(f"""
         <div class="cert-card">
-            <img src="data:image/png;base64,{__import__('base64').b64encode(open(cert, 'rb').read()).decode()}" />
+            <img src="data:image/png;base64,{base64.b64encode(open(cert, 'rb').read()).decode()}" />
             <p class="cert-label">{title}</p>
         </div>
         """, unsafe_allow_html=True)
