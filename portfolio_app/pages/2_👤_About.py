@@ -154,11 +154,17 @@ with col_bio:
         padding:1.75rem 2rem; margin-bottom:1.25rem;
     ">
         <p style="font-family:'Syne',sans-serif; font-weight:700;
-                  color:#00FF89; font-size:1rem;">
+                  color:#00FF89; font-size:1rem; margin-bottom:0.75rem;">
             Who I Am
         </p>
-        <p style="color:#b0afc8; line-height:1.8;">
-            I'm Dindo, a driven Computer Science student.
+        <p style="color:#b0afc8; line-height:1.8; font-size:0.95rem;">
+            I'm Dindo, a driven Computer Science student with a passion for
+            building functional and impactful software. I thrive at the
+            intersection of <strong style="color:#e8e6f0;">design and programming</strong>.
+        </p>
+        <p style="color:#b0afc8; line-height:1.8; font-size:0.95rem; margin-top:1rem;">
+            Whether it's building apps, designing UI, or solving logic problems,
+            I always bring curiosity and dedication.
         </p>
     </div>
     """, unsafe_allow_html=True)
