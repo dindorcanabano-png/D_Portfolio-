@@ -6,14 +6,14 @@ st.set_page_config(page_title="Home | Dindo", page_icon="🏠", layout="wide")
 
 # ---------------- FIX ONLY: IMAGE LOADER ----------------
 def get_img_base64(path):
-    # FIX: make path absolute relative to this file (NOT working directory)
     full_path = os.path.join(os.path.dirname(__file__), path)
-
     with open(full_path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
-# ---------------- YOUR ORIGINAL LINE (NOW WORKS) ----------------
 img = get_img_base64("assest/me.png")
+
+# ---------------- RESPONSIVE FIX (ADDED ONLY) ----------------
+is_mobile = st.session_state.get("is_mobile", False)
 
 st.markdown("""
 <style>
@@ -105,10 +105,7 @@ p, span { font-family: 'DM Sans', sans-serif; }
 /* HIDE STREAMLIT UI */
 #MainMenu, footer, header { visibility: hidden; }
 
-/* MOBILE */
-@media (max-width: 768px) {
-    h1 { text-align: center; font-size: 1.8rem !important; }
-}
+/* TYPING */
 .typing-text {
     font-family: 'JetBrains Mono', monospace;
     color: white;
@@ -138,11 +135,44 @@ p, span { font-family: 'DM Sans', sans-serif; }
 @keyframes blink {
     50% { border-color: transparent; }
 }
+
+/* ---------------- RESPONSIVE FIX (ADDED ONLY) ---------------- */
+@media (max-width: 768px) {
+
+    h1 {
+        text-align: center !important;
+        font-size: 1.8rem !important;
+    }
+
+    /* STACK COLUMNS */
+    [data-testid="column"] {
+        width: 100% !important;
+        flex: 100% !important;
+    }
+
+    /* CENTER LOGO */
+    .logo-badge {
+        margin: 0 auto;
+    }
+
+    /* STATS STACK */
+    .metric-card {
+        margin-bottom: 1rem;
+    }
+
+    /* TYPING FIX */
+    .typing-text {
+        font-size: 0.75rem !important;
+        white-space: normal !important;
+        width: 100% !important;
+    }
+}
 </style>
 """, unsafe_allow_html=True)
 
 st.markdown("<p class='terminal-code'>[ ACCESSING_CORE_SYSTEM ]</p>", unsafe_allow_html=True)
 
+# ---------------- LAYOUT (UNCHANGED LOGIC) ----------------
 col_logo, col_title = st.columns([1, 4])
 
 with col_logo:
