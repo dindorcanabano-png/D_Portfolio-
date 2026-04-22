@@ -20,7 +20,6 @@ pip install streamlit
 To run the code find the terminal and type this streamlit run App.py
 
 • GitHub Repository Link
-(Ensure your repository includes all source code files and a well-documented README
-file)
+(https://github.com/dindorcanabano-png/D_Portfolio-)
 • Streamlit Live App Link
 (Your deployed and fully functional web application)
