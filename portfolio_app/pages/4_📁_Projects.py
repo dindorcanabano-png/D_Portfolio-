@@ -51,6 +51,53 @@ html, body, [class*="css"] {
     font-family: 'Syne', sans-serif; font-weight: 600;
     box-shadow: 0 4px 15px rgba(124,58,237,0.35);
 }
+/* =========================
+   RESPONSIVE FIX (ADDED ONLY)
+========================= */
+
+@media (max-width: 768px) {
+
+    /* TITLE */
+    h1 {
+        font-size: 2rem !important;
+        text-align: center !important;
+    }
+
+    /* TABS WRAP */
+    div[data-baseweb="tab-list"] {
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+    }
+
+    /* PROJECT GRID STACK */
+    div[data-testid="column"] {
+        width: 100% !important;
+        flex: 100% !important;
+    }
+
+    /* CARD FIX */
+    div[style*="border-radius:18px"] {
+        padding: 1rem !important;
+    }
+
+    /* TECH BADGES WRAP */
+    span {
+        display: inline-block;
+        margin-bottom: 0.25rem !important;
+    }
+
+    /* FLEX HEADER STACK (ICON + STATUS) */
+    div[style*="justify-content:space-between"] {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px;
+    }
+
+    /* BUTTON IMPROVE */
+    .stButton > button {
+        width: 100% !important;
+    }
+}
 </style>
 """, unsafe_allow_html=True)
 
