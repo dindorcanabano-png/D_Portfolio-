@@ -13,16 +13,37 @@ st.markdown("""
 .stApp {
     background-color: #000000 !important;
     color:#e8e6f0;
+    overflow-x: hidden !important;
 }
 
-/* SIDEBAR */
+/* =========================
+   SIDEBAR (FIXED + RESPONSIVE)
+========================= */
 [data-testid="stSidebar"] {
     background: #0F5233 !important;
     border-right: none !important;
+    transition: all 0.3s ease-in-out;
+    min-width: 240px;
 }
 
 [data-testid="stSidebar"] * {
     color: #e8e6f0 !important;
+}
+
+/* 🔥 MOBILE SIDEBAR FIX */
+@media (max-width: 768px) {
+    [data-testid="stSidebar"] {
+        width: 65px !important;
+        min-width: 65px !important;
+        overflow-x: hidden !important;
+    }
+
+    /* hide sidebar text labels (keep icons if any) */
+    [data-testid="stSidebar"] span,
+    [data-testid="stSidebar"] p {
+        font-size: 0 !important;
+        opacity: 0 !important;
+    }
 }
 
 /* TEXT */
@@ -44,178 +65,53 @@ hr {
 .stProgress > div > div > div > div {
     background: linear-gradient(90deg, #7c3aed, #60a5fa);
 }
+
 /* =========================
-   RESPONSIVE FIX (ADDED ONLY)
+   RESPONSIVE FIX (CLEANED)
 ========================= */
 
 @media (max-width: 768px) {
 
-    /* TITLE */
     h1 {
-        font-size: 2rem !important;
+        font-size: 1.9rem !important;
         text-align: center !important;
     }
 
-    /* TABS WRAP */
-    div[data-baseweb="tab-list"] {
-        flex-wrap: wrap !important;
-        gap: 6px !important;
-    }
-
-    /* PROJECT GRID STACK */
-    div[data-testid="column"] {
-        width: 100% !important;
-        flex: 100% !important;
-    }
-
-    /* CARD FIX */
-    div[style*="border-radius:18px"] {
-        padding: 1rem !important;
-    }
-
-    /* TECH BADGES WRAP */
-    span {
-        display: inline-block;
-        margin-bottom: 0.25rem !important;
-    }
-
-    /* FLEX HEADER STACK (ICON + STATUS) */
-    div[style*="justify-content:space-between"] {
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        gap: 8px;
-    }
-
-    /* BUTTON IMPROVE */
-    .stButton > button {
-        width: 100% !important;
-    }
-}
-/* HIDE UI */
-#MainMenu, footer, header {
-    visibility: hidden;
-}
-
-/* ---------------- RESPONSIVE FIX (REAL FIX) ---------------- */
-@media (max-width: 768px) {
-
-    h1 {
-        font-size: 2rem !important;
-        text-align: center !important;
-    }
-
-    /* STACK COLUMNS (FIXED STREAMLIT SELECTOR) */
     div[data-testid="column"] {
         width: 100% !important;
         flex: 100% !important;
         display: block !important;
     }
 
-    /* TOOL CARDS STACK FIX */
     div[style*="display:flex"] {
         flex-direction: column !important;
         align-items: flex-start !important;
         text-align: left !important;
     }
 
-    /* SOFT SKILLS STACK */
-    div[style*="text-align:center"] {
-        margin-bottom: 1rem;
+    .stButton > button {
         width: 100% !important;
     }
 
-    /* PROGRESS BARS FULL WIDTH */
-    div[style*="margin-bottom:1.1rem"] {
-        width: 100% !important;
-    }
-}
-/* =========================
-   FINAL RESPONSIVE PATCH (SAFE ADD-ON)
-========================= */
-
-@media (max-width: 1024px) {
-
-    /* make columns stack properly */
-    div[data-testid="column"] {
-        width: 100% !important;
-        flex: 100% !important;
-        display: block !important;
-    }
-
-    /* prevent horizontal overflow */
-    .stApp {
-        overflow-x: hidden !important;
-    }
-
-    /* tool + card flex fix */
-    div[style*="display:flex"] {
-        flex-wrap: wrap !important;
-    }
-
-    /* center headers on tablets */
-    h1 {
-        text-align: center !important;
-        font-size: 2.2rem !important;
-    }
-}
-
-@media (max-width: 768px) {
-
-    /* title smaller for mobile */
-    h1 {
-        font-size: 1.9rem !important;
-        text-align: center !important;
-    }
-
-    /* force single column layout */
-    div[data-testid="column"] {
-        width: 100% !important;
-        flex: 100% !important;
-    }
-
-    /* skills / tools stack */
-    div[style*="margin-bottom:1.1rem"],
-    div[style*="border-radius:12px"] {
-        width: 100% !important;
-    }
-
-    /* soft skills grid → stack */
-    div[data-testid="column"] > div {
-        margin-bottom: 1rem !important;
-    }
-
-    /* progress bar fix */
-    div[style*="height:7px"] {
-        width: 100% !important;
-    }
-
-    /* remove spacing overflow */
     body {
         overflow-x: hidden !important;
     }
 }
 
 @media (max-width: 480px) {
-
     h1 {
         font-size: 1.6rem !important;
     }
+}
 
-    /* make everything tighter */
-    div[style*="padding:0.9rem"] {
-        padding: 0.75rem !important;
-    }
-
-    /* tool cards center fix */
-    div[style*="align-items:center"] {
-        flex-direction: column !important;
-        text-align: center !important;
-    }
+/* HIDE UI */
+#MainMenu, footer, header {
+    visibility: hidden;
 }
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- HEADER (UNCHANGED) ----------------
+# ---------------- HEADER ----------------
 st.markdown("""
 <p style="
     font-family:'Syne',sans-serif;
@@ -241,7 +137,7 @@ st.markdown("""
 <hr style="border-color:#00FF89; margin-bottom:2rem;">
 """, unsafe_allow_html=True)
 
-# ---------------- LAYOUT (UNCHANGED) ----------------
+# ---------------- LAYOUT ----------------
 col_prog, col_tools = st.columns([1.4, 1], gap="large")
 
 with col_prog:
@@ -351,7 +247,7 @@ with col_tools:
         </div>
         """, unsafe_allow_html=True)
 
-# ---------------- SOFT SKILLS (UNCHANGED) ----------------
+# ---------------- SOFT SKILLS ----------------
 st.markdown("<br>", unsafe_allow_html=True)
 
 st.markdown("""
