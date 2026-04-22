@@ -1,12 +1,18 @@
 import streamlit as st
 import base64
+import os
 
 st.set_page_config(page_title="Home | Dindo", page_icon="🏠", layout="wide")
 
+# ---------------- FIX ONLY: IMAGE LOADER ----------------
 def get_img_base64(path):
-    with open(path, "rb") as f:
+    # FIX: make path absolute relative to this file (NOT working directory)
+    full_path = os.path.join(os.path.dirname(__file__), path)
+
+    with open(full_path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
+# ---------------- YOUR ORIGINAL LINE (NOW WORKS) ----------------
 img = get_img_base64("assest/me.png")
 
 st.markdown("""
@@ -123,14 +129,12 @@ p, span { font-family: 'DM Sans', sans-serif; }
         blink 0.7s step-end infinite;
 }
 
-/* typing animation (LOOPS) */
 @keyframes typing {
     0% { width: 0ch; }
     50% { width: 80ch; }
     100% { width: 0ch; }
 }
 
-/* cursor blink */
 @keyframes blink {
     50% { border-color: transparent; }
 }
