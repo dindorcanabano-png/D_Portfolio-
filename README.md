@@ -5,9 +5,29 @@
  Features
  Multi-page navigation
  Projects showcase section
+ Certificate
  About Me page
  Custom UI design with CSS
-
+📁 Project Structure (Portfolio Multipage App)
+portfolio_app/
+│
+├── app.py
+│
+└── pages/
+    │
+    ├── assets/
+    │   ├── me.png
+    │   ├── cert1.png
+    │   ├── cert2.jpg
+    │   ├── cert3.png
+    │   └── cert4.jpg
+    │
+    ├── 1_🏠_Home.py
+    ├── 2_📄_About.py
+    ├── 3_⚡_Skills.py
+    ├── 4_📁_Projects.py
+    └── 5_📞_Contact.py
+ 
  Python
  Streamlit
  HTML/CSS (custom styling)
