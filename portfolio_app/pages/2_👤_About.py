@@ -183,6 +183,22 @@ with col_bio:
         ("2026", "Student Programmer / Editor",
          "Currently studying programming and doing editing tasks.")
     ]
+    with col_info:
+    st.markdown("""
+    <div style="background:#13131f; border:1px solid #2a2a3e;
+                border-radius:16px; padding:1.75rem;">
+        <p style="color:#00FF89; font-weight:700;">Quick Info</p>
+    """, unsafe_allow_html=True)
+
+    info_items = [
+        ("Role", "Student Developer"),
+        ("Degree", "Computer Science"),
+        ("Focus", "Full-Stack Development"),
+        ("Location", "Philippines"),
+        ("Status", "Open to Opportunities"),
+    ]
+
+    for label, value in info_items:
 
     for year, title, desc in timeline_items:
         st.markdown(f"""
