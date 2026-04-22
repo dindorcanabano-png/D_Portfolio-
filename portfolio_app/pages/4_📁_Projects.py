@@ -1,4 +1,4 @@
- import streamlit as st
+import streamlit as st
 
 st.set_page_config(page_title="Projects | Dindo", page_icon="D", layout="wide")
 
