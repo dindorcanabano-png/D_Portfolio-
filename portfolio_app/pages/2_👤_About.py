@@ -200,6 +200,7 @@ with col_info:
     <div style="background:#13131f; border:1px solid #2a2a3e;
                 border-radius:16px; padding:1.75rem;">
         <p style="color:#00FF89; font-weight:700;">Quick Info</p>
+    </div>
     """, unsafe_allow_html=True)
 
     info_items = [
@@ -218,8 +219,6 @@ with col_info:
             <span style="color:#e8e6f0;">{value}</span>
         </div>
         """, unsafe_allow_html=True)
-
-    st.markdown("</div>", unsafe_allow_html=True)
 
 # ---------------- CERTIFICATES ----------------
 st.markdown("<div class='cert-title'>Certificates</div>", unsafe_allow_html=True)
