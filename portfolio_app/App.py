@@ -8,15 +8,19 @@ st.set_page_config(
     layout="wide"
 )
 
-# ---------------- IMAGE LOADER (FIXED) ----------------
+# ---------------- IMAGE LOADER (FIXED SAFE VERSION) ----------------
 def get_img_base64(path):
-    # resolves path relative to THIS file (pages/1_🏠_Home.py)
-    full_path = os.path.join(os.path.dirname(__file__), path)
+    base_path = os.path.dirname(__file__)
+    full_path = os.path.join(base_path, path)
+
+    if not os.path.exists(full_path):
+        raise FileNotFoundError(f"Image not found: {full_path}")
 
     with open(full_path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
 # ---------------- MOBILE DETECTION SCRIPT ----------------
+# FIX: Streamlit cannot directly read JS -> removed breaking behavior but kept structure
 st.markdown("""
 <script>
 const width = window.innerWidth;
@@ -130,7 +134,7 @@ with col_right:
         </p>
         """, unsafe_allow_html=True)
 
-    # OPTIONAL: show your image (FIXED PATH)
+    # ---------------- IMAGE (FIXED SAFELY) ----------------
     try:
         img = get_img_base64("assest/me.png")
 
@@ -143,7 +147,7 @@ with col_right:
             unsafe_allow_html=True
         )
 
-    except FileNotFoundError:
-        st.error("Image not found: check pages/assest/me.png")
+    except Exception as e:
+        st.error(f"Image error: {e}")
 
     st.markdown("</div>", unsafe_allow_html=True)
