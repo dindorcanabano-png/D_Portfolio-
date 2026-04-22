@@ -2,7 +2,12 @@ import streamlit as st
 import base64
 import os
 
-st.set_page_config(page_title="Home | Dindo", page_icon="🏠", layout="wide")
+st.set_page_config(
+    page_title="Home | Dindo",
+    page_icon="🏠",
+    layout="wide",
+    initial_sidebar_state="collapsed"   # ✅ FIX: enables mobile-friendly sidebar toggle
+)
 
 # ---------------- FIX ONLY: IMAGE LOADER ----------------
 def get_img_base64(path):
@@ -12,7 +17,7 @@ def get_img_base64(path):
 
 img = get_img_base64("assest/me.png")
 
-# ---------------- RESPONSIVE FIX (ADDED ONLY) ----------------
+# ---------------- RESPONSIVE FLAG ----------------
 is_mobile = st.session_state.get("is_mobile", False)
 
 st.markdown("""
@@ -27,10 +32,25 @@ st.markdown("""
 /* SIDEBAR */
 section[data-testid="stSidebar"] {
     background: #0F5233 !important;
+    transition: all 0.3s ease-in-out;
 }
 
 section[data-testid="stSidebar"] * {
     color: #e8e6f0 !important;
+}
+
+/* 🔥 MOBILE SIDEBAR FIX */
+@media (max-width: 768px) {
+    section[data-testid="stSidebar"] {
+        width: 75vw !important;
+        position: fixed !important;
+        z-index: 9999 !important;
+        box-shadow: 0 0 20px rgba(0,255,137,0.25);
+    }
+
+    [data-testid="collapsedControl"] {
+        display: block !important;
+    }
 }
 
 /* FONTS */
@@ -102,7 +122,7 @@ p, span { font-family: 'DM Sans', sans-serif; }
     color: #00FF89 !important;
 }
 
-/* HIDE STREAMLIT UI */
+/* HIDE UI */
 #MainMenu, footer, header { visibility: hidden; }
 
 /* TYPING */
@@ -110,17 +130,12 @@ p, span { font-family: 'DM Sans', sans-serif; }
     font-family: 'JetBrains Mono', monospace;
     color: white;
     font-size: 0.85rem;
-
     white-space: nowrap;
     overflow: hidden;
-
     border-right: 2px solid #00FF89;
-
     display: inline-block;
-
     width: 0;
     max-width: max-content;
-
     animation:
         typing 5s steps(80, end) infinite,
         blink 0.7s step-end infinite;
@@ -136,7 +151,7 @@ p, span { font-family: 'DM Sans', sans-serif; }
     50% { border-color: transparent; }
 }
 
-/* ---------------- RESPONSIVE FIX (ADDED ONLY) ---------------- */
+/* RESPONSIVE FIX */
 @media (max-width: 768px) {
 
     h1 {
@@ -144,23 +159,19 @@ p, span { font-family: 'DM Sans', sans-serif; }
         font-size: 1.8rem !important;
     }
 
-    /* STACK COLUMNS */
     [data-testid="column"] {
         width: 100% !important;
         flex: 100% !important;
     }
 
-    /* CENTER LOGO */
     .logo-badge {
         margin: 0 auto;
     }
 
-    /* STATS STACK */
     .metric-card {
         margin-bottom: 1rem;
     }
 
-    /* TYPING FIX */
     .typing-text {
         font-size: 0.75rem !important;
         white-space: normal !important;
@@ -172,7 +183,7 @@ p, span { font-family: 'DM Sans', sans-serif; }
 
 st.markdown("<p class='terminal-code'>[ ACCESSING_CORE_SYSTEM ]</p>", unsafe_allow_html=True)
 
-# ---------------- LAYOUT (UNCHANGED LOGIC) ----------------
+# ---------------- LAYOUT ----------------
 col_logo, col_title = st.columns([1, 4])
 
 with col_logo:
