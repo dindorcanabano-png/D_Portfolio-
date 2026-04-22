@@ -129,6 +129,89 @@ hr {
         width: 100% !important;
     }
 }
+/* =========================
+   FINAL RESPONSIVE PATCH (SAFE ADD-ON)
+========================= */
+
+@media (max-width: 1024px) {
+
+    /* make columns stack properly */
+    div[data-testid="column"] {
+        width: 100% !important;
+        flex: 100% !important;
+        display: block !important;
+    }
+
+    /* prevent horizontal overflow */
+    .stApp {
+        overflow-x: hidden !important;
+    }
+
+    /* tool + card flex fix */
+    div[style*="display:flex"] {
+        flex-wrap: wrap !important;
+    }
+
+    /* center headers on tablets */
+    h1 {
+        text-align: center !important;
+        font-size: 2.2rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* title smaller for mobile */
+    h1 {
+        font-size: 1.9rem !important;
+        text-align: center !important;
+    }
+
+    /* force single column layout */
+    div[data-testid="column"] {
+        width: 100% !important;
+        flex: 100% !important;
+    }
+
+    /* skills / tools stack */
+    div[style*="margin-bottom:1.1rem"],
+    div[style*="border-radius:12px"] {
+        width: 100% !important;
+    }
+
+    /* soft skills grid → stack */
+    div[data-testid="column"] > div {
+        margin-bottom: 1rem !important;
+    }
+
+    /* progress bar fix */
+    div[style*="height:7px"] {
+        width: 100% !important;
+    }
+
+    /* remove spacing overflow */
+    body {
+        overflow-x: hidden !important;
+    }
+}
+
+@media (max-width: 480px) {
+
+    h1 {
+        font-size: 1.6rem !important;
+    }
+
+    /* make everything tighter */
+    div[style*="padding:0.9rem"] {
+        padding: 0.75rem !important;
+    }
+
+    /* tool cards center fix */
+    div[style*="align-items:center"] {
+        flex-direction: column !important;
+        text-align: center !important;
+    }
+}
 </style>
 """, unsafe_allow_html=True)
 
