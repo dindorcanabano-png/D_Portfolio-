@@ -51,7 +51,7 @@ div[data-baseweb="select"]:focus-within {
 
     box-shadow: 0 0 0 2px rgba(0,255,137,0.35) !important;
 
-    background-color: none;
+    background-color: black;
 }
 
 /* FORCE DEFAULT INPUT STYLE */
@@ -236,12 +236,12 @@ with col_info:
             background:#000000; border:1px solid #2a2a3e; border-radius:12px;
             padding:0.9rem 1.1rem; margin-bottom:0.65rem;
             display:flex; align-items:center; gap:0.85rem;
-        
+        ">
             <div style="
                 width:38px; height:38px; border-radius:9px; flex-shrink:0;
                 background:{color}18; border:1px solid {color}33;
                 display:flex; align-items:center; justify-content:center;
-        
+            ">
                 <span style="font-family:'Syne',sans-serif; font-weight:800;
                              color:{color}; font-size:0.9rem;">
                     {platform[0]}
@@ -256,17 +256,17 @@ with col_info:
                     {handle}
                 </p>
             </div>
-        </div>s
+        </div>
         """, unsafe_allow_html=True)
 
     st.markdown("""
     <div style="
         background:#000000; border:1px solid #2a2a3e; border-radius:14px;
         padding:1.25rem; margin-top:0.5rem; text-align:center;
-    
+    ">
         <p style="font-family:'Syne',sans-serif; font-weight:800;
                   color:#ffffff; font-size:1.5rem; margin:0;">24h</p>
-        <p style="color:#00FF89; font-size:0.8rem; margin:0.25rem 0 0;
+        <p style="color:#00FF89; font-size:0.8rem; margin:0.25rem 0 0;">
             Average response time
         </p>
     </div>
