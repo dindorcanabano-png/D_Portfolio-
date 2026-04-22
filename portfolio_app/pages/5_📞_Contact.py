@@ -51,7 +51,7 @@ div[data-baseweb="select"]:focus-within {
 
     box-shadow: 0 0 0 2px rgba(0,255,137,0.35) !important;
 
-    background-color: white;
+    background-color: none;
 }
 
 /* FORCE DEFAULT INPUT STYLE */
