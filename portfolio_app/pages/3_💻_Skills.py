@@ -50,7 +50,7 @@ hr {
     visibility: hidden;
 }
 
-/* ---------------- RESPONSIVE FIX (ADDED ONLY) ---------------- */
+/* ---------------- RESPONSIVE FIX (REAL FIX) ---------------- */
 @media (max-width: 768px) {
 
     h1 {
@@ -58,24 +58,27 @@ hr {
         text-align: center !important;
     }
 
-    /* STACK COLUMNS */
-    [data-testid="column"] {
+    /* STACK COLUMNS (FIXED STREAMLIT SELECTOR) */
+    div[data-testid="column"] {
         width: 100% !important;
         flex: 100% !important;
+        display: block !important;
     }
 
-    /* TOOL CARDS STACK */
-    div[style*="display:flex; align-items:center"] {
+    /* TOOL CARDS STACK FIX */
+    div[style*="display:flex"] {
         flex-direction: column !important;
-        text-align: center;
+        align-items: flex-start !important;
+        text-align: left !important;
     }
 
     /* SOFT SKILLS STACK */
     div[style*="text-align:center"] {
         margin-bottom: 1rem;
+        width: 100% !important;
     }
 
-    /* PROGRESS BARS FIX */
+    /* PROGRESS BARS FULL WIDTH */
     div[style*="margin-bottom:1.1rem"] {
         width: 100% !important;
     }
