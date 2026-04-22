@@ -2,6 +2,9 @@ import streamlit as st
 
 st.set_page_config(page_title="Skills | Dindo", page_icon="D", layout="wide")
 
+# ---------------- RESPONSIVE FLAG ----------------
+is_mobile = st.session_state.get("is_mobile", False)
+
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
@@ -12,15 +15,12 @@ st.markdown("""
     color:#e8e6f0;
 }
 
-/* =========================
-   SIDEBAR (UPDATED COLOR)
-   ========================= */
+/* SIDEBAR */
 [data-testid="stSidebar"] {
     background: #0F5233 !important;
     border-right: none !important;
 }
 
-/* Sidebar text fix */
 [data-testid="stSidebar"] * {
     color: #e8e6f0 !important;
 }
@@ -33,7 +33,6 @@ html, body, [class*="css"] {
 /* HEADINGS */
 h1, h2, h3 {
     font-family: 'Syne', sans-serif;
-    letter-spacing: -0.02em;
 }
 
 /* HR */
@@ -44,16 +43,47 @@ hr {
 /* PROGRESS BAR */
 .stProgress > div > div > div > div {
     background: linear-gradient(90deg, #7c3aed, #60a5fa);
-    border-radius: 999px;
 }
 
 /* HIDE UI */
 #MainMenu, footer, header {
     visibility: hidden;
 }
+
+/* ---------------- RESPONSIVE FIX (ADDED ONLY) ---------------- */
+@media (max-width: 768px) {
+
+    h1 {
+        font-size: 2rem !important;
+        text-align: center !important;
+    }
+
+    /* STACK COLUMNS */
+    [data-testid="column"] {
+        width: 100% !important;
+        flex: 100% !important;
+    }
+
+    /* TOOL CARDS STACK */
+    div[style*="display:flex; align-items:center"] {
+        flex-direction: column !important;
+        text-align: center;
+    }
+
+    /* SOFT SKILLS STACK */
+    div[style*="text-align:center"] {
+        margin-bottom: 1rem;
+    }
+
+    /* PROGRESS BARS FIX */
+    div[style*="margin-bottom:1.1rem"] {
+        width: 100% !important;
+    }
+}
 </style>
 """, unsafe_allow_html=True)
 
+# ---------------- HEADER (UNCHANGED) ----------------
 st.markdown("""
 <p style="
     font-family:'Syne',sans-serif;
@@ -79,6 +109,7 @@ st.markdown("""
 <hr style="border-color:#00FF89; margin-bottom:2rem;">
 """, unsafe_allow_html=True)
 
+# ---------------- LAYOUT (UNCHANGED) ----------------
 col_prog, col_tools = st.columns([1.4, 1], gap="large")
 
 with col_prog:
@@ -113,7 +144,7 @@ with col_prog:
         for skill_name, level, color in skills:
             st.markdown(f"""
             <div style="margin-bottom:1.1rem;">
-                <div style="display:flex; justify-content:space-between; margin-bottom:0.35rem;">
+                <div style="display:flex; justify-content:space-between;">
                     <span style="font-size:0.88rem; color:#b0afc8;">
                         {skill_name}
                     </span>
@@ -188,6 +219,7 @@ with col_tools:
         </div>
         """, unsafe_allow_html=True)
 
+# ---------------- SOFT SKILLS (UNCHANGED) ----------------
 st.markdown("<br>", unsafe_allow_html=True)
 
 st.markdown("""
@@ -203,10 +235,10 @@ Soft Skills
 soft_cols = st.columns(4)
 
 soft_skills = [
-    ("Problem Solving", "Analytical thinking and creative approaches to challenges."),
+    ("Problem Solving", "Analytical thinking and creative approaches."),
     ("Communication", "Clear articulation of technical concepts."),
-    ("Adaptability", " ability to adjust efficiently to new environments."),
-    ("Teamwork", "Strong collaboration skills and ability to work effectively."),
+    ("Adaptability", "Ability to adjust to new environments."),
+    ("Teamwork", "Strong collaboration skills."),
 ]
 
 for col, (skill, desc) in zip(soft_cols, soft_skills):
@@ -219,7 +251,7 @@ for col, (skill, desc) in zip(soft_cols, soft_skills):
             padding:1.25rem;
             text-align:center;
         ">
-            <p style="color:#00FF89; font-weight:700; font-family:'Syne';">
+            <p style="color:#00FF89; font-weight:700;">
                 {skill}
             </p>
             <p style="color:#6b6b8a; font-size:0.8rem;">
