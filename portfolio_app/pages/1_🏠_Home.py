@@ -1,16 +1,14 @@
 import streamlit as st
 import base64
-import os
 
 
 st.set_page_config(page_title="Home | Dindo", page_icon="🏠", layout="wide")
 
 def get_img_base64(path):
-    full_path = os.path.join(os.path.dirname(__file__), path)
-    with open(full_path, "rb") as f:
+    with open(path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
-img = get_img_base64("assets/me.png")
+img = get_img_base64("assest/me.png")
 
 st.markdown("""
 <style>
