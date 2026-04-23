@@ -2,9 +2,6 @@ import streamlit as st
 
 st.set_page_config(page_title="Skills | Dindo", page_icon="D", layout="wide")
 
-# ---------------- RESPONSIVE FLAG ----------------
-is_mobile = st.session_state.get("is_mobile", False)
-
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
@@ -13,37 +10,32 @@ st.markdown("""
 .stApp {
     background-color: #000000 !important;
     color:#e8e6f0;
-    overflow-x: hidden !important;
+}
+            header {
+    background-color: #000000 !important;
+}
+
+[data-testid="stHeader"] {
+    background-color: #000000 !important;
+}
+
+/* remove header lines/shadow */
+[data-testid="stHeader"]::before,
+[data-testid="stHeader"]::after {
+    display: none !important;
 }
 
 /* =========================
-   SIDEBAR (FIXED + RESPONSIVE)
-========================= */
+   SIDEBAR (UPDATED COLOR)
+   ========================= */
 [data-testid="stSidebar"] {
     background: #0F5233 !important;
     border-right: none !important;
-    transition: all 0.3s ease-in-out;
-    min-width: 240px;
 }
 
+/* Sidebar text fix */
 [data-testid="stSidebar"] * {
     color: #e8e6f0 !important;
-}
-
-/* 🔥 MOBILE SIDEBAR FIX */
-@media (max-width: 768px) {
-    [data-testid="stSidebar"] {
-        width: 65px !important;
-        min-width: 65px !important;
-        overflow-x: hidden !important;
-    }
-
-    /* hide sidebar text labels (keep icons if any) */
-    [data-testid="stSidebar"] span,
-    [data-testid="stSidebar"] p {
-        font-size: 0 !important;
-        opacity: 0 !important;
-    }
 }
 
 /* TEXT */
@@ -54,6 +46,7 @@ html, body, [class*="css"] {
 /* HEADINGS */
 h1, h2, h3 {
     font-family: 'Syne', sans-serif;
+    letter-spacing: -0.02em;
 }
 
 /* HR */
@@ -64,54 +57,15 @@ hr {
 /* PROGRESS BAR */
 .stProgress > div > div > div > div {
     background: linear-gradient(90deg, #7c3aed, #60a5fa);
-}
-
-/* =========================
-   RESPONSIVE FIX (CLEANED)
-========================= */
-
-@media (max-width: 768px) {
-
-    h1 {
-        font-size: 1.9rem !important;
-        text-align: center !important;
-    }
-
-    div[data-testid="column"] {
-        width: 100% !important;
-        flex: 100% !important;
-        display: block !important;
-    }
-
-    div[style*="display:flex"] {
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        text-align: left !important;
-    }
-
-    .stButton > button {
-        width: 100% !important;
-    }
-
-    body {
-        overflow-x: hidden !important;
-    }
-}
-
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.6rem !important;
-    }
+    border-radius: 999px;
 }
 
 /* HIDE UI */
-#MainMenu, footer, header {
-    visibility: hidden;
-}
+#MainMenu, footer { visibility: hidden; }
+            
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- HEADER ----------------
 st.markdown("""
 <p style="
     font-family:'Syne',sans-serif;
@@ -137,7 +91,6 @@ st.markdown("""
 <hr style="border-color:#00FF89; margin-bottom:2rem;">
 """, unsafe_allow_html=True)
 
-# ---------------- LAYOUT ----------------
 col_prog, col_tools = st.columns([1.4, 1], gap="large")
 
 with col_prog:
@@ -172,7 +125,7 @@ with col_prog:
         for skill_name, level, color in skills:
             st.markdown(f"""
             <div style="margin-bottom:1.1rem;">
-                <div style="display:flex; justify-content:space-between;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:0.35rem;">
                     <span style="font-size:0.88rem; color:#b0afc8;">
                         {skill_name}
                     </span>
@@ -247,7 +200,6 @@ with col_tools:
         </div>
         """, unsafe_allow_html=True)
 
-# ---------------- SOFT SKILLS ----------------
 st.markdown("<br>", unsafe_allow_html=True)
 
 st.markdown("""
@@ -263,10 +215,10 @@ Soft Skills
 soft_cols = st.columns(4)
 
 soft_skills = [
-    ("Problem Solving", "Analytical thinking and creative approaches."),
+    ("Problem Solving", "Analytical thinking and creative approaches to challenges."),
     ("Communication", "Clear articulation of technical concepts."),
-    ("Adaptability", "Ability to adjust to new environments."),
-    ("Teamwork", "Strong collaboration skills."),
+    ("Adaptability", " ability to adjust efficiently to new environments."),
+    ("Teamwork", "Strong collaboration skills and ability to work effectively."),
 ]
 
 for col, (skill, desc) in zip(soft_cols, soft_skills):
@@ -279,7 +231,7 @@ for col, (skill, desc) in zip(soft_cols, soft_skills):
             padding:1.25rem;
             text-align:center;
         ">
-            <p style="color:#00FF89; font-weight:700;">
+            <p style="color:#00FF89; font-weight:700; font-family:'Syne';">
                 {skill}
             </p>
             <p style="color:#6b6b8a; font-size:0.8rem;">
