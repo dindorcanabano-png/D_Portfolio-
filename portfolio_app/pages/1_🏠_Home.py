@@ -4,12 +4,14 @@ import os
 
 
 st.set_page_config(page_title="Home | Dindo", page_icon="🏠", layout="wide")
+
 def get_img_base64(path):
     full_path = os.path.join(os.path.dirname(__file__), path)
     with open(full_path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
 img = get_img_base64("assets/me.png")
+
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&family=JetBrains+Mono&display=swap');
