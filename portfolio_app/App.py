@@ -1,6 +1,5 @@
 import streamlit as st
-import base64
-import os
+
 
 st.set_page_config(
     page_title="Welcome to My Page | Dindo",
@@ -8,14 +7,6 @@ st.set_page_config(
     layout="wide"
 )
 
-# ---------------- FIX: IMAGE LOADER (ADDED ONLY) ----------------
-def get_img_base64(path):
-    full_path = os.path.join(os.path.dirname(__file__), path)
-
-    with open(full_path, "rb") as f:
-        return base64.b64encode(f.read()).decode()
-
-# ---------------- MOBILE DETECTION SCRIPT ----------------
 st.markdown("""
 <script>
 const width = window.innerWidth;
@@ -26,44 +17,41 @@ window.parent.postMessage({type: "streamlit:setSessionState", key: "is_mobile", 
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap');
-
 .stApp {
     background: #000000 !important;
     color: #e8e6f0;
 }
+header {
+    background-color: #000000 !important;
+}
 
+[data-testid="stHeader"] {
+    background-color: #000000 !important;
+}
+
+/* remove header lines/shadow */
+[data-testid="stHeader"]::before,
+[data-testid="stHeader"]::after {
+    display: none !important;
+}
 html, body, [class*="css"] {
     font-family: 'DM Sans', sans-serif;
     color: #e8e6f0;
 }
-
-/* SIDEBAR */
+            
 section[data-testid="stSidebar"] {
     background: #0F5233 !important;
     border-right: none !important;
-    width: 220px !important;
-    min-width: 220px !important;
-    max-width: 220px !important;
 }
 
 section[data-testid="stSidebar"] * {
     color: #e8e6f0 !important;
-    font-size: 0.9rem !important;
 }
 
-/* SIDEBAR PADDING FIX */
-section[data-testid="stSidebar"] > div {
-    padding-top: 1rem !important;
-    padding-left: 0.8rem !important;
-    padding-right: 0.8rem !important;
-}
-
-/* HEADINGS */
 h1, h2, h3 {
     font-family: 'Syne', sans-serif !important;
 }
 
-/* MAIN LAYOUT */
 .block-container {
     padding-top: 2rem;
     padding-left: 5%;
@@ -72,7 +60,6 @@ h1, h2, h3 {
     margin: auto;
 }
 
-/* LOGO */
 .logo-container {
     display: flex;
     justify-content: center;
@@ -96,7 +83,7 @@ h1, h2, h3 {
 
 hr { border-color: #1e1e2e; }
 
-#MainMenu, footer, header { visibility: hidden; }
+#MainMenu, footer { visibility: hidden; }
 
 .stButton>button {
     width: 100%;
@@ -109,19 +96,6 @@ hr { border-color: #1e1e2e; }
 
 .right-panel {
     width: 100%;
-}
-
-/* =========================
-   RESPONSIVE FIX (FULL PATCH)
-========================= */
-
-@media (max-width: 1024px) {
-
-    section[data-testid="stSidebar"] {
-        width: 200px !important;
-        min-width: 200px !important;
-        max-width: 200px !important;
-    }
 }
 
 @media (max-width: 768px) {
@@ -151,28 +125,19 @@ hr { border-color: #1e1e2e; }
         text-align: center;
     }
 
-    /* mobile sidebar */
     section[data-testid="stSidebar"] {
-        width: 65% !important;
-        min-width: 65% !important;
-        max-width: 65% !important;
-        position: fixed !important;
-        z-index: 999 !important;
+        width: 70% !important;
     }
 }
 
-@media (max-width: 480px) {
-
-    section[data-testid="stSidebar"] {
-        width: 80% !important;
-        min-width: 80% !important;
-        max-width: 80% !important;
+@media (min-width: 769px) and (max-width: 1024px) {
+    .animated-d {
+        font-size: clamp(3rem, 6vw, 6rem);
     }
 }
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- LAYOUT ----------------
 if st.session_state.get("is_mobile", False):
     col_left = st.container()
     col_right = st.container()
