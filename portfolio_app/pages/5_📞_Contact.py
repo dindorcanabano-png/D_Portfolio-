@@ -61,7 +61,7 @@ div[data-baseweb="select"] {
 
     border: 1px solid #2a2a3e !important;
 
-    background-color: white;
+    background-color:#000000;
 }
 
 /* FOCUS STATE CLEAN */
