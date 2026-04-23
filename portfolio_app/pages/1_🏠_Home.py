@@ -1,23 +1,14 @@
 import streamlit as st
 import base64
-import os
 
-st.set_page_config(
-    page_title="Home | Dindo",
-    page_icon="🏠",
-    layout="wide",
-    initial_sidebar_state="collapsed"
-)
+st.set_page_config(page_title="Home | Dindo", page_icon="🏠", layout="wide")
 
-# ---------------- IMAGE LOADER ----------------
 def get_img_base64(path):
-    full_path = os.path.join(os.path.dirname(__file__), path)
-    with open(full_path, "rb") as f:
+    with open(path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
-img = get_img_base64("assest/me.png")
+img = get_img_base64("pages/assest/me.png")
 
-# ---------------- CSS ----------------
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&family=JetBrains+Mono&display=swap');
@@ -30,39 +21,26 @@ st.markdown("""
 /* SIDEBAR */
 section[data-testid="stSidebar"] {
     background: #0F5233 !important;
-    transition: all 0.3s ease-in-out;
-    padding: 0 !important;
-}
-
-/* ✅ FIXED SIDEBAR PADDING */
-section[data-testid="stSidebar"] div[data-testid="stSidebarContent"],
-section[data-testid="stSidebar"] .block-container {
-    padding-top: 0.6rem !important;
-    padding-left: 0.6rem !important;
-    padding-right: 0.6rem !important;
 }
 
 section[data-testid="stSidebar"] * {
     color: #e8e6f0 !important;
 }
 
-/* MOBILE SIDEBAR */
-@media (max-width: 768px) {
-    section[data-testid="stSidebar"] {
-        width: 75vw !important;
-        position: fixed !important;
-        z-index: 9999 !important;
-        box-shadow: 0 0 20px rgba(0,255,137,0.25);
-    }
-
-    [data-testid="collapsedControl"] {
-        display: block !important;
-    }
-}
-
 /* FONTS */
 h1, h2, h3 { font-family: 'Syne', sans-serif !important; }
 p, span { font-family: 'DM Sans', sans-serif; }
+
+/* TITLE */
+.dashboard-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    background: #00FF89;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
 /* TERMINAL TEXT */
 .terminal-code {
@@ -80,7 +58,7 @@ p, span { font-family: 'DM Sans', sans-serif; }
     width: 160px;
     height: 150px;
     border-radius: 20px;
-    background: #00FF89;
+    background: linear-gradient(135deg, #00FF89, #00FF89);
     padding: 3px;
     box-shadow: 0 0 20px #00FF89aa;
     animation: floatGlow 3s ease-in-out infinite;
@@ -114,57 +92,51 @@ p, span { font-family: 'DM Sans', sans-serif; }
     transform: translateY(-5px);
 }
 
-/* HIDE UI */
+.metric-card div[style*="font-size: 2rem"] {
+    color: #00FF89 !important;
+}
+
+/* HIDE STREAMLIT UI */
 #MainMenu, footer, header { visibility: hidden; }
 
-/* TYPING */
+/* MOBILE */
+@media (max-width: 768px) {
+    h1 { text-align: center; font-size: 1.8rem !important; }
+}
 .typing-text {
     font-family: 'JetBrains Mono', monospace;
     color: white;
     font-size: 0.85rem;
+
     white-space: nowrap;
     overflow: hidden;
+
     border-right: 2px solid #00FF89;
+
     display: inline-block;
+
     width: 0;
-    animation: typing 5s steps(80, end) infinite, blink 0.7s step-end infinite;
+    max-width: max-content;
+
+    animation:
+        typing 5s steps(80, end) infinite,
+        blink 0.7s step-end infinite;
 }
 
+/* typing animation (LOOPS) */
 @keyframes typing {
     0% { width: 0ch; }
     50% { width: 80ch; }
     100% { width: 0ch; }
 }
 
+/* cursor blink */
 @keyframes blink {
     50% { border-color: transparent; }
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    h1 {
-        text-align: center !important;
-        font-size: 1.8rem !important;
-    }
-
-    .logo-badge {
-        margin: 0 auto;
-    }
-
-    .metric-card {
-        margin-bottom: 1rem;
-    }
-
-    .typing-text {
-        font-size: 0.75rem !important;
-        white-space: normal !important;
-        width: 100% !important;
-    }
 }
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- HEADER ----------------
 st.markdown("<p class='terminal-code'>[ ACCESSING_CORE_SYSTEM ]</p>", unsafe_allow_html=True)
 
 col_logo, col_title = st.columns([1, 4])
@@ -191,9 +163,13 @@ with col_title:
     <hr style="border-color:#00FF89;">
     """, unsafe_allow_html=True)
 
+st.write("<br>", unsafe_allow_html=True)
+
 st.markdown("""
-<div class="typing-text">
-    You can copy the output, but without understanding the logic, it won’t last.
+<div class="typing-container">
+    <div class="typing-text">
+        You can copy the output, but without understanding the logic, it won’t last.
+    </div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -221,3 +197,5 @@ for i, (label, val, icon) in enumerate(stats):
             </div>
         </div>
         """, unsafe_allow_html=True)
+
+st.write("<br>", unsafe_allow_html=True)
