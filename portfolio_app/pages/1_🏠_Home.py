@@ -9,7 +9,9 @@ def get_img_base64(path):
     full_path = os.path.join(os.path.dirname(__file__), path)
     with open(full_path, "rb") as f:
         return base64.b64encode(f.read()).decode()
-img = get_img_base64("pages/asset/me.png")
+
+# ✅ FIXED HERE
+img = get_img_base64("asset/me.png")
 
 st.markdown("""
 <style>
@@ -19,7 +21,7 @@ st.markdown("""
 .stApp {
     background: #000000 !important;
 }
-            header {
+header {
     background-color: #000000 !important;
 }
 
@@ -112,19 +114,19 @@ p, span { font-family: 'DM Sans', sans-serif; }
     color: #00FF89 !important;
 }
 
-/* HIDE STREAMLIT UI */
-/* SHOW + STYLE FOOTER */
+/* FOOTER */
 footer {
     visibility: visible !important;
     background-color: black !important;
     color: white !important;
     text-align: center;
 }
-            
+
 /* MOBILE */
 @media (max-width: 768px) {
     h1 { text-align: center; font-size: 1.8rem !important; }
 }
+
 .typing-text {
     font-family: 'JetBrains Mono', monospace;
     color: white;
@@ -145,14 +147,12 @@ footer {
         blink 0.7s step-end infinite;
 }
 
-/* typing animation (LOOPS) */
 @keyframes typing {
     0% { width: 0ch; }
     50% { width: 80ch; }
     100% { width: 0ch; }
 }
 
-/* cursor blink */
 @keyframes blink {
     50% { border-color: transparent; }
 }
