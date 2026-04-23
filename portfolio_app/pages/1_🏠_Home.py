@@ -34,6 +34,12 @@ section[data-testid="stSidebar"] {
     background: #0F5233 !important;
     transition: all 0.3s ease-in-out;
 }
+/* SIDEBAR PADDING FIX */
+section[data-testid="stSidebar"] > div {
+    padding-top: 1rem !important;
+    padding-left: 0.8rem !important;
+    padding-right: 0.8rem !important;
+}
 
 section[data-testid="stSidebar"] * {
     color: #e8e6f0 !important;
