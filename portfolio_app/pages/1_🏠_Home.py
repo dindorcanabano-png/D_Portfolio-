@@ -10,7 +10,7 @@ def get_img_base64(path):
     with open(full_path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
-img = get_img_base64("assets/me.png")
+img = get_img_base64("asset/me.png")
 
 st.markdown("""
 <style>
