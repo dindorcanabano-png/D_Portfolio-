@@ -26,9 +26,19 @@ st.markdown("""
     background: #000000 !important;
 }
 
-/* REMOVE TOP HEADER COMPLETELY */
-header, [data-testid="stHeader"] {
-    display: none !important;
+/* KEEP STREAMLIT HEADER (NO REMOVAL) */
+header {
+    background-color: #000000 !important;
+}
+
+/* SIDEBAR TEXT WHITE */
+section[data-testid="stSidebar"] * {
+    color: white !important;
+}
+
+/* OPTIONAL: sidebar background */
+section[data-testid="stSidebar"] {
+    background-color:#0F5233;
 }
 
 /* MAIN LAYOUT */
@@ -39,11 +49,6 @@ header, [data-testid="stHeader"] {
     text-align: center;
 }
 
-/* SIDEBAR */
-section[data-testid="stSidebar"] {
-    background-color:#0F5233;
-}
-
 /* PROFILE WRAPPER */
 .profile-wrapper {
     display: flex;
@@ -51,7 +56,7 @@ section[data-testid="stSidebar"] {
     align-items: center;
 }
 
-/* PROFILE CARD ANIMATION (IMPROVED) */
+/* PROFILE CARD ANIMATION */
 .profile-card {
     width: 190px;
     height: 190px;
@@ -69,14 +74,13 @@ section[data-testid="stSidebar"] {
     box-shadow: 0 0 40px #00FF89;
 }
 
-/* IMAGE */
 .profile-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-/* PROFILE ANIMATIONS */
+/* ANIMATION */
 @keyframes glowMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -89,32 +93,24 @@ section[data-testid="stSidebar"] {
     100% { transform: translateY(0px); }
 }
 
-/* TITLE (SMALLER + WHITE) */
+/* TITLE (BIG + WHITE) */
 h1 {
     font-family: 'Syne', sans-serif !important;
     text-align: center !important;
     color: white !important;
-    font-size: 1.4rem !important;
+    font-size: 1.8rem !important;   /* slightly bigger */
 }
 
-/* LONGER GREEN LINE */
+/* GREEN LINE LONGER */
 hr {
     border: none;
     height: 2px;
     background: #00FF89;
-    width: 85%;
+    width: 90%;
     margin: auto;
 }
 
-/* TEXT */
-.access-text {
-    color: #00FF89;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.85rem;
-    text-align: center;
-}
-
-/* CARDS */
+/* CARD */
 .metric-card {
     background: rgba(19, 19, 31, 0.85);
     border: 1px solid #00FF8933;
@@ -137,11 +133,14 @@ hr {
     }
 
     h1 {
-        font-size: 1.1rem !important;
+        font-size: 1.3rem !important;
     }
 }
 </style>
 """, unsafe_allow_html=True)
+
+# ================= HEADER =================
+st.header("Home | Dindo")  # <-- STREAMLIT HEADER BACK
 
 # ================= PROFILE =================
 st.markdown("<div class='profile-wrapper'>", unsafe_allow_html=True)
