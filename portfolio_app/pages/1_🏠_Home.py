@@ -2,7 +2,7 @@ import streamlit as st
 import base64
 import os
 
-st.set_page_config(page_title, page_icon="🏠", layout="wide")
+st.set_page_config(page_title="Home | Dindo", page_icon="🏠", layout="wide")
 
 # ================= IMAGE LOADER =================
 def get_img_base64(filename):
@@ -26,7 +26,7 @@ st.markdown("""
     background: #000000 !important;
 }
 
-/* KEEP STREAMLIT HEADER (NO REMOVAL) */
+/* HEADER */
 header {
     background-color: #000000 !important;
 }
@@ -36,12 +36,11 @@ section[data-testid="stSidebar"] * {
     color: white !important;
 }
 
-/* OPTIONAL: sidebar background */
 section[data-testid="stSidebar"] {
     background-color:#0F5233;
 }
 
-/* MAIN LAYOUT */
+/* MAIN */
 .block-container {
     padding-top: 2rem;
     max-width: 1100px;
@@ -49,7 +48,7 @@ section[data-testid="stSidebar"] {
     text-align: center;
 }
 
-/* PROFILE WRAPPER */
+/* PROFILE */
 .profile-wrapper {
     display: flex;
     justify-content: center;
@@ -80,7 +79,7 @@ section[data-testid="stSidebar"] {
     object-fit: cover;
 }
 
-/* ANIMATION */
+/* ANIMATIONS */
 @keyframes glowMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -93,15 +92,22 @@ section[data-testid="stSidebar"] {
     100% { transform: translateY(0px); }
 }
 
-/* TITLE (BIG + WHITE) */
+/* BIG TITLE + LOOP ANIMATION */
 h1 {
     font-family: 'Syne', sans-serif !important;
     text-align: center !important;
     color: white !important;
-    font-size: 1.8rem !important;   /* slightly bigger */
+    font-size: 2.4rem !important;
+    animation: fadeText 3s infinite alternate;
 }
 
-/* GREEN LINE LONGER */
+/* LOOP EFFECT */
+@keyframes fadeText {
+    0% { opacity: 0.6; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.05); }
+}
+
+/* GREEN LINE */
 hr {
     border: none;
     height: 2px;
@@ -110,7 +116,22 @@ hr {
     margin: auto;
 }
 
-/* CARD */
+/* LOOP TEXT ANIMATION */
+.loop-text {
+    font-family: 'JetBrains Mono', monospace;
+    color: white;
+    font-size: 0.9rem;
+    text-align: center;
+    animation: blinkText 1.5s infinite;
+}
+
+@keyframes blinkText {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+/* CARDS */
 .metric-card {
     background: rgba(19, 19, 31, 0.85);
     border: 1px solid #00FF8933;
@@ -133,14 +154,14 @@ hr {
     }
 
     h1 {
-        font-size: 1.3rem !important;
+        font-size: 1.6rem !important;
     }
 }
 </style>
 """, unsafe_allow_html=True)
 
 # ================= HEADER =================
-st.header("Home | Dindo")  # <-- STREAMLIT HEADER BACK
+st.header("Home | Dindo")
 
 # ================= PROFILE =================
 st.markdown("<div class='profile-wrapper'>", unsafe_allow_html=True)
@@ -160,14 +181,9 @@ st.markdown("""
 <hr>
 """, unsafe_allow_html=True)
 
-# ================= TEXT =================
+# ================= LOOP TEXT =================
 st.markdown("""
-<div style="
-    font-family:'JetBrains Mono', monospace;
-    color:white;
-    font-size:0.85rem;
-    text-align:center;
-">
+<div class="loop-text">
 You can copy the output, but without understanding the logic, it won’t last.
 </div>
 """, unsafe_allow_html=True)
