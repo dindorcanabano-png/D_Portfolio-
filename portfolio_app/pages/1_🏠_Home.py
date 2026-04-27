@@ -49,15 +49,6 @@ h1, h2, h3 {
     text-align: center !important;
 }
 
-/* ACCESS TEXT */
-.access-text {
-    color: #00FF89;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 14px;
-    letter-spacing: 2px;
-    text-align: center;
-}
-
 /* PROFILE WRAPPER */
 .profile-wrapper {
     display: flex;
@@ -78,7 +69,7 @@ h1, h2, h3 {
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* CLEAN HOVER (NO LAYOUT BREAK) */
+/* HOVER */
 .profile-card:hover {
     transform: scale(1.05);
     box-shadow: 0 0 35px #00FF89;
@@ -118,18 +109,11 @@ h1, h2, h3 {
         width: 130px;
         height: 130px;
     }
-
-    .access-text {
-        font-size: 11px;
-    }
 }
 </style>
 """, unsafe_allow_html=True)
 
-# ================= HEADER =================
-st.markdown("<div class='access-text'>[ ACCESSING_CORE_SYSTEM ]</div>", unsafe_allow_html=True)
-
-# FULL CENTER LAYOUT (NO SIDE SHIFT)
+# ================= PROFILE =================
 st.markdown("<div class='profile-wrapper'>", unsafe_allow_html=True)
 
 if img:
@@ -141,6 +125,7 @@ if img:
 
 st.markdown("</div>", unsafe_allow_html=True)
 
+# ================= TITLE =================
 st.markdown("""
 <h1>Welcome to my page</h1>
 <hr style="border-color:#00FF89; width:60%; margin:auto;">
