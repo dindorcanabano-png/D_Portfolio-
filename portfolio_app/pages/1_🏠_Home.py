@@ -26,7 +26,6 @@ st.markdown("""
     background: #000000 !important;
 }
 
-/* HEADER */
 header, [data-testid="stHeader"] {
     background-color: #000000 !important;
 }
@@ -36,25 +35,40 @@ section[data-testid="stSidebar"] {
     background-color:#0F5233;
 }
 
-/* TEXT FONTS */
+/* TEXT */
 h1, h2, h3 {
     font-family: 'Syne', sans-serif !important;
 }
 
-/* ================= SQUARE PROFILE CARD ================= */
+/* ================= RESPONSIVE ACCESS TEXT ================= */
+.access-text {
+    color: #00FF89;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+/* MOBILE SMALLER */
+@media (max-width: 768px) {
+    .access-text {
+        font-size: 11px;
+        text-align: center;
+    }
+}
+
+/* ================= PROFILE CARD ================= */
 .profile-card {
-    width: 160px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
     margin: auto;
-    border-radius: 12px; /* square but slightly soft */
+    border-radius: 12px;
     overflow: hidden;
     background: linear-gradient(45deg, #00FF89, #00ffaa, #00FF89);
     background-size: 300% 300%;
     animation: glowMove 4s ease infinite, float 3s ease-in-out infinite;
-    box-shadow: 0 0 25px #00FF89;
+    box-shadow: 0 0 20px #00FF89;
 }
 
-/* RESPONSIVE PROFILE */
 @media (max-width: 768px) {
     .profile-card {
         width: 120px;
@@ -62,7 +76,6 @@ h1, h2, h3 {
     }
 }
 
-/* IMAGE */
 .profile-card img {
     width: 100%;
     height: 100%;
@@ -91,54 +104,17 @@ h1, h2, h3 {
     text-align: center;
 }
 
-/* HOVER */
-.metric-card:hover {
-    transform: translateY(-5px);
-    border-color: #00FF89;
-}
-
-/* ================= CODE TEXT WHITE ================= */
-.typing-text {
-    font-family: 'JetBrains Mono', monospace;
-    color: #ffffff !important;   /* FIXED WHITE */
-    font-size: 0.85rem;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 2px solid #00FF89;
-    display: inline-block;
-    width: 100%;
-    animation: typing 5s steps(80, end) infinite, blink 0.7s step-end infinite;
-}
-
-/* MOBILE FIX */
+/* MOBILE CARD FIX */
 @media (max-width: 768px) {
-    .typing-text {
-        font-size: 0.7rem;
-        white-space: normal;
-        border-right: none;
-        animation: none;
+    .metric-card {
+        padding: 12px;
     }
-
-    h1 {
-        font-size: 1.4rem !important;
-        text-align: center;
-    }
-}
-
-@keyframes typing {
-    0% { width: 0ch; }
-    50% { width: 80ch; }
-    100% { width: 0ch; }
-}
-
-@keyframes blink {
-    50% { border-color: transparent; }
 }
 </style>
 """, unsafe_allow_html=True)
 
 # ================= HEADER =================
-st.markdown("<h3 style='color:#00FF89;'>[ ACCESSING_CORE_SYSTEM ]</h3>", unsafe_allow_html=True)
+st.markdown("<div class='access-text'>[ ACCESSING_CORE_SYSTEM ]</div>", unsafe_allow_html=True)
 
 col1, col2 = st.columns([1, 4])
 
@@ -152,14 +128,24 @@ with col1:
 
 with col2:
     st.markdown("""
-    <h1 style="color:white;">Welcome to my page</h1>
+    <h1 style="
+        color:white;
+        font-size:clamp(1.2rem, 2.5vw, 2rem);
+    ">
+    Welcome to my page
+    </h1>
     <hr style="border-color:#00FF89;">
     """, unsafe_allow_html=True)
 
 # ================= TEXT =================
 st.markdown("""
-<div class="typing-text">
-    You can copy the output, but without understanding the logic, it won’t last.
+<div style="
+    font-family:'JetBrains Mono', monospace;
+    color:white;
+    font-size:0.85rem;
+    text-align:center;
+">
+You can copy the output, but without understanding the logic, it won’t last.
 </div>
 """, unsafe_allow_html=True)
 
