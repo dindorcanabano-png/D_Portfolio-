@@ -26,6 +26,7 @@ st.markdown("""
     background: #000000 !important;
 }
 
+/* HEADER */
 header, [data-testid="stHeader"] {
     background-color: #000000 !important;
 }
@@ -35,44 +36,40 @@ section[data-testid="stSidebar"] {
     background-color:#0F5233;
 }
 
-/* TEXT */
-h1, h2, h3 {
-    font-family: 'Syne', sans-serif !important;
-}
-
-/* ================= RESPONSIVE ACCESS TEXT ================= */
+/* ================= RESPONSIVE HEADER TEXT ================= */
 .access-text {
     color: #00FF89;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 14px;
+    font-size: 13px;
+    text-align: center;
     letter-spacing: 2px;
 }
 
-/* MOBILE SMALLER */
+/* MOBILE */
 @media (max-width: 768px) {
     .access-text {
-        font-size: 11px;
-        text-align: center;
+        font-size: 10px;
     }
 }
 
-/* ================= PROFILE CARD ================= */
+/* ================= SMALL PROFILE PIC ================= */
 .profile-card {
-    width: 150px;
-    height: 160px;
+    width: 120px;      /* REDUCED SIZE */
+    height: 120px;     /* REDUCED SIZE */
     margin: auto;
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
     background: linear-gradient(45deg, #00FF89, #00ffaa, #00FF89);
     background-size: 300% 300%;
     animation: glowMove 4s ease infinite, float 3s ease-in-out infinite;
-    box-shadow: 0 0 20px #00FF89;
+    box-shadow: 0 0 15px #00FF89;
 }
 
+/* MOBILE SMALLER */
 @media (max-width: 768px) {
     .profile-card {
-        width: 120px;
-        height: 120px;
+        width: 90px;
+        height: 90px;
     }
 }
 
@@ -91,8 +88,31 @@ h1, h2, h3 {
 
 @keyframes float {
     0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-8px); }
     100% { transform: translateY(0px); }
+}
+
+/* ================= TITLE RESPONSIVE ================= */
+h1 {
+    color: white;
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    text-align: center;
+}
+
+/* ================= SAFE TEXT (NO OVERFLOW) ================= */
+.safe-text {
+    font-family: 'JetBrains Mono', monospace;
+    color: white;
+    font-size: 0.8rem;
+    text-align: center;
+
+    /* IMPORTANT FIX */
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+
+    max-width: 100%;
+    padding: 0 10px;
 }
 
 /* ================= CARDS ================= */
@@ -100,14 +120,14 @@ h1, h2, h3 {
     background: rgba(19, 19, 31, 0.8);
     border: 1px solid #00FF8933;
     border-radius: 12px;
-    padding: 18px;
+    padding: 15px;
     text-align: center;
 }
 
-/* MOBILE CARD FIX */
+/* MOBILE CARDS */
 @media (max-width: 768px) {
     .metric-card {
-        padding: 12px;
+        padding: 10px;
     }
 }
 </style>
@@ -116,7 +136,7 @@ h1, h2, h3 {
 # ================= HEADER =================
 st.markdown("<div class='access-text'>[ ACCESSING_CORE_SYSTEM ]</div>", unsafe_allow_html=True)
 
-col1, col2 = st.columns([1, 4])
+col1, col2 = st.columns([1, 5])
 
 with col1:
     if img:
@@ -128,23 +148,13 @@ with col1:
 
 with col2:
     st.markdown("""
-    <h1 style="
-        color:white;
-        font-size:clamp(1.2rem, 2.5vw, 2rem);
-    ">
-    Welcome to my page
-    </h1>
+    <h1>Welcome to my page</h1>
     <hr style="border-color:#00FF89;">
     """, unsafe_allow_html=True)
 
-# ================= TEXT =================
+# ================= SAFE TEXT (NO OVERFLOW FIXED) =================
 st.markdown("""
-<div style="
-    font-family:'JetBrains Mono', monospace;
-    color:white;
-    font-size:0.85rem;
-    text-align:center;
-">
+<div class="safe-text">
 You can copy the output, but without understanding the logic, it won’t last.
 </div>
 """, unsafe_allow_html=True)
@@ -165,11 +175,11 @@ for i, (label, val, icon) in enumerate(stats):
     with cols[i]:
         st.markdown(f"""
         <div class="metric-card">
-            <div style="font-size:1.5rem;">{icon}</div>
-            <div style="font-size:2rem;color:#00FF89;font-weight:800;">
+            <div style="font-size:1.2rem;">{icon}</div>
+            <div style="font-size:1.5rem;color:#00FF89;font-weight:800;">
                 {val}
             </div>
-            <div style="color:#00FF89;">
+            <div style="color:#00FF89;font-size:0.75rem;">
                 {label}
             </div>
         </div>
