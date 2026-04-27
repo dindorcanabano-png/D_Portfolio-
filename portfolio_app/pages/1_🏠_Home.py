@@ -1,14 +1,25 @@
 import streamlit as st
-from pathlib import Path
+import base64
+import os
 
-st.set_page_config(
-    page_title="Home | Dindo",
-    page_icon="🏠",
-    layout="wide"
-)
+st.set_page_config(page_title="Home | Dindo", page_icon="🏠", layout="wide")
 
-BASE_DIR = Path(__file__).resolve().parents[1]
-img_path = BASE_DIR / "assets" / "me.png"
+# ================= IMAGE LOADER (FIXED WITH OS) =================
+def get_img_base64(path):
+    base_dir = os.path.dirname(os.path.dirname(__file__))  # go OUT of /pages
+    full_path = os.path.join(base_dir, path)
+
+    if not os.path.exists(full_path):
+        raise FileNotFoundError(f"Image not found at: {full_path}")
+
+    with open(full_path, "rb") as f:
+        return base64.b64encode(f.read()).decode()
+
+# ✅ FIXED PATH (IMPORTANT)
+img = get_img_base64("assets/me.png")
+# ===============================================================
+
+
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&family=JetBrains+Mono&display=swap');
@@ -26,7 +37,6 @@ header {
     background-color: #000000 !important;
 }
 
-/* remove header lines/shadow */
 [data-testid="stHeader"]::before,
 [data-testid="stHeader"]::after {
     display: none !important;
@@ -124,7 +134,6 @@ footer {
     h1 { text-align: center; font-size: 1.8rem !important; }
 }
 
-/* typing animation */
 .typing-text {
     font-family: 'JetBrains Mono', monospace;
     color: white;
@@ -157,7 +166,22 @@ st.markdown("<p class='terminal-code'>[ ACCESSING_CORE_SYSTEM ]</p>", unsafe_all
 col_logo, col_title = st.columns([1, 4])
 
 with col_logo:
-    st.image(str(img_path), width=130)
+    st.markdown(f"""
+    <div class="logo-badge">
+        <img src="data:image/png;base64,{img}">
+    </div>
+    """, unsafe_allow_html=True)
+
+with col_title:
+    st.markdown("""
+    <h1 style="
+        font-family:'Syne',sans-serif;
+        font-size:clamp(1.8rem, 4vw, 2.6rem);
+        font-weight:800;
+        background:white;
+        -webkit-background-clip:text;
+        -webkit-text-fill-color:transparent;
+    ">
     Welcome to my page
     </h1>
     <hr style="border-color:#00FF89;">
