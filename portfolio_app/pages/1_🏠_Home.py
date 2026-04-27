@@ -168,7 +168,6 @@ with col_logo:
         st.image(str(img_path), width=130)
     </div>
     """, unsafe_allow_html=True)
-
 with col_title:
     st.markdown("""
     <h1 style="
