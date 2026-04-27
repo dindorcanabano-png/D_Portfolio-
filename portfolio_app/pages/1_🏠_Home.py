@@ -1,14 +1,38 @@
 import streamlit as st
 import base64
-
+import os
 
 st.set_page_config(page_title="Home | Dindo", page_icon="🏠", layout="wide")
 
+# ================= IMPROVED IMAGE LOADER (NO CRASH VERSION) =================
 def get_img_base64(path):
-    with open(path, "rb") as f:
-        return base64.b64encode(f.read()).decode()
+    try:
+        # current file location (pages/)
+        base_dir = os.path.dirname(__file__)
 
-img = get_img_base64("pages/assest/me.png")
+        # build full path safely
+        full_path = os.path.join(base_dir, path)
+
+        # normalize path (IMPORTANT for Windows + Cloud)
+        full_path = os.path.normpath(full_path)
+
+        if not os.path.exists(full_path):
+            st.error(f"Image not found: {full_path}")
+            return ""
+
+        with open(full_path, "rb") as f:
+            return base64.b64encode(f.read()).decode()
+
+    except Exception as e:
+        st.error(f"Image loader error: {e}")
+        return ""
+
+
+# ================= FIXED PATH =================
+# ❗ FIX: spelling must be "assets" not "assest"
+img = get_img_base64("assets/me.png")
+# ==============================================
+
 
 st.markdown("""
 <style>
@@ -18,7 +42,7 @@ st.markdown("""
 .stApp {
     background: #000000 !important;
 }
-            header {
+header {
     background-color: #000000 !important;
 }
 
@@ -26,13 +50,12 @@ st.markdown("""
     background-color: #000000 !important;
 }
 
-/* remove header lines/shadow */
 [data-testid="stHeader"]::before,
 [data-testid="stHeader"]::after {
     display: none !important;
 }
 
-/* SIDEBAR (FIXED) */
+/* SIDEBAR */
 section[data-testid="stSidebar"] {
     background-color:#0F5233;
     border-right: 1px solid #1e1e2e;
@@ -45,25 +68,6 @@ section[data-testid="stSidebar"] * {
 /* FONTS */
 h1, h2, h3 { font-family: 'Syne', sans-serif !important; }
 p, span { font-family: 'DM Sans', sans-serif; }
-
-/* TITLE */
-.dashboard-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2rem, 6vw, 4rem);
-    font-weight: 800;
-    text-transform: uppercase;
-    background: #00FF89;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-/* TERMINAL TEXT */
-.terminal-code {
-    font-family: 'JetBrains Mono', monospace;
-    color: #00FF89;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-}
 
 /* LOGO */
 .logo-badge {
@@ -102,41 +106,6 @@ p, span { font-family: 'DM Sans', sans-serif; }
     transition: 0.3s;
 }
 
-#MainMenu, footer { visibility: hidden; }
-
-.stButton>button {
-    width: 100%;
-    border-radius: 12px;
-}
-
-[data-testid="stHorizontalBlock"] {
-    gap: 2rem;
-}
-
-.right-panel {
-    width: 100%;
-}
-
-    .block-container {
-        padding-top: 1rem;
-        padding-left: 4%;
-        padding-right: 4%;
-    }
-
-    [data-testid="column"] {
-        width: 100% !important;
-        flex: 100% !important;
-    }
-
-    .element-container {
-        text-align: center;
-    }
-
-    section[data-testid="stSidebar"] {
-        width: 70% !important;
-    }
-}
-
 .metric-card:hover {
     border-color: #00FF89;
     transform: translateY(-5px);
@@ -146,47 +115,25 @@ p, span { font-family: 'DM Sans', sans-serif; }
     color: #00FF89 !important;
 }
 
-/* HIDE STREAMLIT UI */
-/* SHOW + STYLE FOOTER */
-footer {
-    visibility: visible !important;
-    background-color: black !important;
-    color: white !important;
-    text-align: center;
-}
-            
-/* MOBILE */
-@media (max-width: 768px) {
-    h1 { text-align: center; font-size: 1.8rem !important; }
-}
+/* typing */
 .typing-text {
     font-family: 'JetBrains Mono', monospace;
     color: white;
     font-size: 0.85rem;
-
     white-space: nowrap;
     overflow: hidden;
-
     border-right: 2px solid #00FF89;
-
     display: inline-block;
-
     width: 0;
-    max-width: max-content;
-
-    animation:
-        typing 5s steps(80, end) infinite,
-        blink 0.7s step-end infinite;
+    animation: typing 5s steps(80, end) infinite, blink 0.7s step-end infinite;
 }
 
-/* typing animation (LOOPS) */
 @keyframes typing {
     0% { width: 0ch; }
     50% { width: 80ch; }
     100% { width: 0ch; }
 }
 
-/* cursor blink */
 @keyframes blink {
     50% { border-color: transparent; }
 }
@@ -198,11 +145,12 @@ st.markdown("<p class='terminal-code'>[ ACCESSING_CORE_SYSTEM ]</p>", unsafe_all
 col_logo, col_title = st.columns([1, 4])
 
 with col_logo:
-    st.markdown(f"""
-    <div class="logo-badge">
-        <img src="data:image/png;base64,{img}">
-    </div>
-    """, unsafe_allow_html=True)
+    if img:
+        st.markdown(f"""
+        <div class="logo-badge">
+            <img src="data:image/png;base64,{img}">
+        </div>
+        """, unsafe_allow_html=True)
 
 with col_title:
     st.markdown("""
