@@ -2,8 +2,26 @@ import streamlit as st
 import base64
 import os
 
-
 st.set_page_config(page_title="Home | Dindo", page_icon="🏠", layout="wide")
+
+# ================= NAVIGATION (FIXED POSITION) =================
+st.sidebar.markdown("## 📁 Navigation")
+
+page = st.sidebar.radio(
+    "Go to",
+    ["Home", "About", "Projects", "Contact"]
+)
+
+if page == "About":
+    st.switch_page("pages/1_About.py")
+
+elif page == "Projects":
+    st.switch_page("pages/2_Projects.py")
+
+elif page == "Contact":
+    st.switch_page("pages/3_Contact.py")
+# ===============================================================
+
 
 def get_img_base64(path):
     base_dir = os.path.dirname(__file__)
@@ -16,7 +34,9 @@ def get_img_base64(path):
         return base64.b64encode(f.read()).decode()
 
 
-img = get_img_base64("assest/me.png")
+# ⚠️ CHECK THIS PATH
+img = get_img_base64("assest/me.png")  # change to "assets/me.png" if needed
+
 
 st.markdown("""
 <style>
@@ -26,7 +46,7 @@ st.markdown("""
 .stApp {
     background: #000000 !important;
 }
-            header {
+header {
     background-color: #000000 !important;
 }
 
@@ -34,13 +54,12 @@ st.markdown("""
     background-color: #000000 !important;
 }
 
-/* remove header lines/shadow */
 [data-testid="stHeader"]::before,
 [data-testid="stHeader"]::after {
     display: none !important;
 }
 
-/* SIDEBAR (FIXED) */
+/* SIDEBAR */
 section[data-testid="stSidebar"] {
     background-color:#0F5233;
     border-right: 1px solid #1e1e2e;
@@ -119,53 +138,47 @@ p, span { font-family: 'DM Sans', sans-serif; }
     color: #00FF89 !important;
 }
 
-/* HIDE STREAMLIT UI */
-/* SHOW + STYLE FOOTER */
+/* FOOTER */
 footer {
     visibility: visible !important;
     background-color: black !important;
     color: white !important;
     text-align: center;
 }
-            
+
 /* MOBILE */
 @media (max-width: 768px) {
     h1 { text-align: center; font-size: 1.8rem !important; }
 }
+
 .typing-text {
     font-family: 'JetBrains Mono', monospace;
     color: white;
     font-size: 0.85rem;
-
     white-space: nowrap;
     overflow: hidden;
-
     border-right: 2px solid #00FF89;
-
     display: inline-block;
-
     width: 0;
     max-width: max-content;
-
-    animation:
-        typing 5s steps(80, end) infinite,
-        blink 0.7s step-end infinite;
+    animation: typing 5s steps(80, end) infinite, blink 0.7s step-end infinite;
 }
-
-/* typing animation (LOOPS) */
+section[data-testid="stSidebar"] h2 {
+    color: #00FF89 !important;
+}
 @keyframes typing {
     0% { width: 0ch; }
     50% { width: 80ch; }
     100% { width: 0ch; }
 }
 
-/* cursor blink */
 @keyframes blink {
     50% { border-color: transparent; }
 }
 </style>
 """, unsafe_allow_html=True)
 
+# ==== YOUR ORIGINAL CONTENT (UNCHANGED) ====
 st.markdown("<p class='terminal-code'>[ ACCESSING_CORE_SYSTEM ]</p>", unsafe_allow_html=True)
 
 col_logo, col_title = st.columns([1, 4])
