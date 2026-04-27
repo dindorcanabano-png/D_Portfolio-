@@ -157,16 +157,7 @@ st.markdown("<p class='terminal-code'>[ ACCESSING_CORE_SYSTEM ]</p>", unsafe_all
 col_logo, col_title = st.columns([1, 4])
 
 with col_logo:
-    st.markdown("""
-    <div class="logo-badge">
-    """, unsafe_allow_html=True)
-
     st.image(str(img_path), width=130)
-
-    st.markdown("""
-    </div>
-    """, unsafe_allow_html=True)
-    st.markdown("""
     <h1 style="
         font-family:'Syne',sans-serif;
         font-size:clamp(1.8rem, 4vw, 2.6rem);
