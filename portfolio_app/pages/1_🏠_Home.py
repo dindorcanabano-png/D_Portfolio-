@@ -16,7 +16,7 @@ def get_img_base64(path):
         return base64.b64encode(f.read()).decode()
 
 # ✅ FIXED PATH (IMPORTANT)
-img = get_img_base64("assest/")
+img = get_img_base64("assest/me.png")
 # ===============================================================
 
 
