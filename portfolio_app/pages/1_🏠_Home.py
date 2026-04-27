@@ -15,28 +15,9 @@ def get_img_base64(path):
     with open(full_path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
-# ✅ correct folder name: assets (NOT assest)
+# ✅ FIXED HERE
 img = get_img_base64("assets/me.png")
 # ====================================================
-
-
-# ================= NAVIGATION =================
-st.sidebar.markdown("## 📁 Navigation")
-
-page = st.sidebar.radio(
-    "Go to",
-    ["Home", "About", "Projects", "Contact"]
-)
-
-if page == "About":
-    st.switch_page("pages/1_About.py")
-
-elif page == "Projects":
-    st.switch_page("pages/2_Projects.py")
-
-elif page == "Contact":
-    st.switch_page("pages/3_Contact.py")
-# =============================================
 
 
 st.markdown("""
