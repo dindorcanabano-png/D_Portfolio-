@@ -48,14 +48,6 @@ section[data-testid="stSidebar"] {
     text-align: center;
 }
 
-/* ================= FIXED CENTER PROFILE ================= */
-.profile-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 /* PROFILE CARD */
 .profile-card {
     width: 190px;
@@ -67,6 +59,7 @@ section[data-testid="stSidebar"] {
     animation: glowMove 4s ease infinite, floatUp 3s ease-in-out infinite;
     box-shadow: 0 0 25px #00FF89;
     transition: transform 0.3s ease;
+    margin: auto;
 }
 
 .profile-card:hover {
@@ -101,13 +94,13 @@ h1 {
     margin-top: 10px;
 }
 
-/* GREEN LINE */
+/* GREEN LINE (IMPROVED) */
 .top-line {
-    width: min(95%, 750px);
+    width: min(95%, 800px);
     height: 1.5px;
     background: linear-gradient(90deg, transparent, #00FF89, transparent);
     margin: 18px auto;
-    box-shadow: 0 0 10px #00FF8940;
+    box-shadow: 0 0 12px #00FF8940;
 }
 
 /* TYPING TEXT */
@@ -167,19 +160,16 @@ h1 {
 </style>
 """, unsafe_allow_html=True)
 
-# ================= TOP SECTION =================
+# ================= PROFILE (TRUE CENTER FIX - STREAMLIT SAFE) =================
+col1, col2, col3 = st.columns([1, 2, 1])
 
-# PROFILE CENTER FIX
-st.markdown("<div class='profile-container'>", unsafe_allow_html=True)
-
-if img:
-    st.markdown(f"""
-    <div class="profile-card">
-        <img src="data:image/png;base64,{img}">
-    </div>
-    """, unsafe_allow_html=True)
-
-st.markdown("</div>", unsafe_allow_html=True)
+with col2:
+    if img:
+        st.markdown(f"""
+        <div class="profile-card">
+            <img src="data:image/png;base64,{img}">
+        </div>
+        """, unsafe_allow_html=True)
 
 # ================= TITLE =================
 st.markdown("""
