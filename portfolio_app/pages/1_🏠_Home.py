@@ -48,14 +48,14 @@ section[data-testid="stSidebar"] {
     text-align: center;
 }
 
-/* TOP SECTION CENTER */
+/* TOP SECTION */
 .top-section {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* PROFILE */
+/* PROFILE WRAPPER */
 .profile-wrapper {
     display: flex;
     justify-content: center;
@@ -102,17 +102,18 @@ section[data-testid="stSidebar"] {
 h1 {
     font-family: 'Syne', sans-serif !important;
     color: white !important;
-    font-size: 2.4rem !important;
+    font-size: 2.2rem !important;
     text-align: center;
     margin-top: 10px;
 }
 
-/* ✅ GREEN LINE UNDER PROFILE + TITLE */
+/* 🔥 IMPROVED GREEN LINE (RESPONSIVE + LIGHT + LONG) */
 .top-line {
-    width: min(90%, 650px);
-    height: 2px;
-    background: #00FF89;
-    margin: 15px auto;
+    width: min(95%, 750px);
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, #00FF89, transparent);
+    margin: 18px auto;
+    box-shadow: 0 0 10px #00FF8940;
 }
 
 /* TYPING TEXT */
@@ -164,6 +165,10 @@ h1 {
     h1 {
         font-size: 1.6rem !important;
     }
+
+    .typing-text {
+        font-size: 0.8rem;
+    }
 }
 </style>
 """, unsafe_allow_html=True)
@@ -188,7 +193,7 @@ st.markdown("""
 <h1>Welcome to my page</h1>
 """, unsafe_allow_html=True)
 
-# GREEN LINE (UNDER BOTH PROFILE + TITLE)
+# GREEN LINE
 st.markdown("<div class='top-line'></div>", unsafe_allow_html=True)
 
 st.markdown("</div>", unsafe_allow_html=True)
