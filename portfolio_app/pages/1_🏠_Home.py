@@ -47,7 +47,13 @@ section[data-testid="stSidebar"] {
     margin: auto;
     text-align: center;
 }
-
+hr {
+    border: none;
+    height: 2px;
+    background: #00FF89;
+    width: min(90%, 600px);
+    margin: 8px auto 0 auto;
+}
 /* PROFILE + TITLE ALIGNMENT WRAPPER */
 .top-section {
     display: flex;
