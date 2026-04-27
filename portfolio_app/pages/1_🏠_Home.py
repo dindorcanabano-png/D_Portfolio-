@@ -1,42 +1,14 @@
 import streamlit as st
 import base64
-import os
+
 
 st.set_page_config(page_title="Home | Dindo", page_icon="🏠", layout="wide")
 
-# ================= NAVIGATION (FIXED POSITION) =================
-st.sidebar.markdown("## 📁 Navigation")
-
-page = st.sidebar.radio(
-    "Go to",
-    ["Home", "About", "Projects", "Contact"]
-)
-
-if page == "About":
-    st.switch_page("pages/1_About.py")
-
-elif page == "Projects":
-    st.switch_page("pages/2_Projects.py")
-
-elif page == "Contact":
-    st.switch_page("pages/3_Contact.py")
-# ===============================================================
-
-
 def get_img_base64(path):
-    base_dir = os.path.dirname(__file__)
-    full_path = os.path.join(base_dir, path)
-
-    if not os.path.exists(full_path):
-        raise FileNotFoundError(f"Image not found at: {full_path}")
-
-    with open(full_path, "rb") as f:
+    with open(path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
-
-# ⚠️ CHECK THIS PATH
-img = get_img_base64("assest/me.png")  # change to "assets/me.png" if needed
-
+img = get_img_base64("pages/assest/me.png")
 
 st.markdown("""
 <style>
@@ -46,7 +18,7 @@ st.markdown("""
 .stApp {
     background: #000000 !important;
 }
-header {
+            header {
     background-color: #000000 !important;
 }
 
@@ -54,12 +26,13 @@ header {
     background-color: #000000 !important;
 }
 
+/* remove header lines/shadow */
 [data-testid="stHeader"]::before,
 [data-testid="stHeader"]::after {
     display: none !important;
 }
 
-/* SIDEBAR */
+/* SIDEBAR (FIXED) */
 section[data-testid="stSidebar"] {
     background-color:#0F5233;
     border-right: 1px solid #1e1e2e;
@@ -129,6 +102,41 @@ p, span { font-family: 'DM Sans', sans-serif; }
     transition: 0.3s;
 }
 
+#MainMenu, footer { visibility: hidden; }
+
+.stButton>button {
+    width: 100%;
+    border-radius: 12px;
+}
+
+[data-testid="stHorizontalBlock"] {
+    gap: 2rem;
+}
+
+.right-panel {
+    width: 100%;
+}
+
+    .block-container {
+        padding-top: 1rem;
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+
+    [data-testid="column"] {
+        width: 100% !important;
+        flex: 100% !important;
+    }
+
+    .element-container {
+        text-align: center;
+    }
+
+    section[data-testid="stSidebar"] {
+        width: 70% !important;
+    }
+}
+
 .metric-card:hover {
     border-color: #00FF89;
     transform: translateY(-5px);
@@ -138,47 +146,53 @@ p, span { font-family: 'DM Sans', sans-serif; }
     color: #00FF89 !important;
 }
 
-/* FOOTER */
+/* HIDE STREAMLIT UI */
+/* SHOW + STYLE FOOTER */
 footer {
     visibility: visible !important;
     background-color: black !important;
     color: white !important;
     text-align: center;
 }
-
+            
 /* MOBILE */
 @media (max-width: 768px) {
     h1 { text-align: center; font-size: 1.8rem !important; }
 }
-
 .typing-text {
     font-family: 'JetBrains Mono', monospace;
     color: white;
     font-size: 0.85rem;
+
     white-space: nowrap;
     overflow: hidden;
+
     border-right: 2px solid #00FF89;
+
     display: inline-block;
+
     width: 0;
     max-width: max-content;
-    animation: typing 5s steps(80, end) infinite, blink 0.7s step-end infinite;
+
+    animation:
+        typing 5s steps(80, end) infinite,
+        blink 0.7s step-end infinite;
 }
-section[data-testid="stSidebar"] h2 {
-    color: #00FF89 !important;
-}
+
+/* typing animation (LOOPS) */
 @keyframes typing {
     0% { width: 0ch; }
     50% { width: 80ch; }
     100% { width: 0ch; }
 }
 
+/* cursor blink */
 @keyframes blink {
     50% { border-color: transparent; }
 }
 </style>
 """, unsafe_allow_html=True)
 
-# ==== YOUR ORIGINAL CONTENT (UNCHANGED) ====
 st.markdown("<p class='terminal-code'>[ ACCESSING_CORE_SYSTEM ]</p>", unsafe_allow_html=True)
 
 col_logo, col_title = st.columns([1, 4])
