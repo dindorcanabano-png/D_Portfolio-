@@ -26,9 +26,10 @@ st.markdown("""
     background: #000000 !important;
 }
 
-/* REMOVE TOP HEADER */
-header {
-    display: none !important;
+/* ================= KEEP STREAMLIT HEADER ================= */
+header, [data-testid="stHeader"] {
+    background-color: #000000 !important;
+    display: flex !important;
 }
 
 /* SIDEBAR TEXT WHITE */
@@ -94,7 +95,7 @@ h1 {
     margin-top: 10px;
 }
 
-/* GREEN LINE (IMPROVED) */
+/* GREEN LINE */
 .top-line {
     width: min(95%, 800px);
     height: 1.5px;
@@ -160,7 +161,7 @@ h1 {
 </style>
 """, unsafe_allow_html=True)
 
-# ================= PROFILE (TRUE CENTER FIX - STREAMLIT SAFE) =================
+# ================= PROFILE (CENTER) =================
 col1, col2, col3 = st.columns([1, 2, 1])
 
 with col2:
