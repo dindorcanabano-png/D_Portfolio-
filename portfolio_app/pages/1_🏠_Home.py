@@ -165,7 +165,7 @@ col_logo, col_title = st.columns([1, 4])
 with col_logo:
     st.markdown(f"""
     <div class="logo-badge">
-        <img src="data:image/png;base64,{img}">
+        st.image(str(img_path), width=130)
     </div>
     """, unsafe_allow_html=True)
 
