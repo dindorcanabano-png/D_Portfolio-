@@ -4,10 +4,11 @@ import os
 
 st.set_page_config(page_title="Home | Dindo", page_icon="🏠", layout="wide")
 
-# ================= IMAGE LOADER (FIXED WITH OS) =================
 def get_img_base64(path):
-    base_dir = os.path.dirname(os.path.dirname(__file__))  # go OUT of /pages
-    full_path = os.path.join(base_dir, path)
+    base_dir = os.path.dirname(__file__)  # IMPORTANT FIX (NOT 2 levels up)
+    full_path = os.path.join(base_dir, "..", path)
+
+    full_path = os.path.abspath(full_path)
 
     if not os.path.exists(full_path):
         raise FileNotFoundError(f"Image not found at: {full_path}")
@@ -15,11 +16,8 @@ def get_img_base64(path):
     with open(full_path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
-# ✅ FIXED PATH (IMPORTANT)
+
 img = get_img_base64("assest/me.png")
-# ===============================================================
-
-
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&family=JetBrains+Mono&display=swap');
