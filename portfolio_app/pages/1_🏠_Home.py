@@ -26,7 +26,7 @@ st.markdown("""
     background: #000000 !important;
 }
 
-/* ❌ REMOVE TOP HEADER */
+/* REMOVE TOP HEADER */
 header {
     display: none !important;
 }
@@ -46,6 +46,14 @@ section[data-testid="stSidebar"] {
     max-width: 1100px;
     margin: auto;
     text-align: center;
+}
+
+/* PROFILE + TITLE ALIGNMENT WRAPPER */
+.top-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 /* PROFILE */
@@ -91,24 +99,25 @@ section[data-testid="stSidebar"] {
     100% { transform: translateY(0px); }
 }
 
-/* BIG TITLE */
+/* TITLE */
 h1 {
     font-family: 'Syne', sans-serif !important;
     color: white !important;
     font-size: 2.4rem !important;
     text-align: center;
+    margin-top: 10px;
 }
 
-/* LONG LINE */
+/* RESPONSIVE GREEN LINE */
 hr {
     border: none;
     height: 2px;
     background: #00FF89;
-    width: 90%;
-    margin: auto;
+    width: min(90%, 600px); /* 👈 responsive instead of fixed */
+    margin: 10px auto;
 }
 
-/* ✅ CLEAN TYPING ANIMATION (NO GLITCH) */
+/* TYPING TEXT */
 .typing-text {
     width: fit-content;
     margin: auto;
@@ -165,7 +174,9 @@ hr {
 </style>
 """, unsafe_allow_html=True)
 
-# ================= PROFILE =================
+# ================= TOP SECTION (CENTERED ALIGNMENT) =================
+st.markdown("<div class='top-section'>", unsafe_allow_html=True)
+
 st.markdown("<div class='profile-wrapper'>", unsafe_allow_html=True)
 
 if img:
@@ -177,11 +188,12 @@ if img:
 
 st.markdown("</div>", unsafe_allow_html=True)
 
-# ================= TITLE =================
 st.markdown("""
 <h1>Welcome to my page</h1>
 <hr>
 """, unsafe_allow_html=True)
+
+st.markdown("</div>", unsafe_allow_html=True)
 
 # ================= TYPING TEXT =================
 st.markdown("""
