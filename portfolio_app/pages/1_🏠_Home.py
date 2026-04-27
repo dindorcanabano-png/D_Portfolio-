@@ -3,10 +3,8 @@ import base64
 import os
 
 st.set_page_config(page_title="Home | Dindo", page_icon="🏠", layout="wide")
-
-# ================= FIXED IMAGE PATH =================
 def get_img_base64(path):
-    base_dir = os.path.dirname(os.path.dirname(__file__))  # go OUT of /pages
+    base_dir = os.path.abspath(".")  # stable in Streamlit Cloud
     full_path = os.path.join(base_dir, path)
 
     if not os.path.exists(full_path):
@@ -15,11 +13,8 @@ def get_img_base64(path):
     with open(full_path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
-# ✅ FIXED HERE
-img = get_img_base64("assets/me.png")
-# ====================================================
 
-
+img = get_img_base64("assest/me.png")
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&family=JetBrains+Mono&display=swap');
