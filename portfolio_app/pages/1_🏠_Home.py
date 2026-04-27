@@ -26,7 +26,12 @@ st.markdown("""
     background: #000000 !important;
 }
 
-/* CENTER MAIN LAYOUT */
+/* REMOVE TOP HEADER COMPLETELY */
+header, [data-testid="stHeader"] {
+    display: none !important;
+}
+
+/* MAIN LAYOUT */
 .block-container {
     padding-top: 2rem;
     max-width: 1100px;
@@ -34,19 +39,9 @@ st.markdown("""
     text-align: center;
 }
 
-header, [data-testid="stHeader"] {
-    background-color: #000000 !important;
-}
-
 /* SIDEBAR */
 section[data-testid="stSidebar"] {
     background-color:#0F5233;
-}
-
-/* TEXT */
-h1, h2, h3 {
-    font-family: 'Syne', sans-serif !important;
-    text-align: center !important;
 }
 
 /* PROFILE WRAPPER */
@@ -56,7 +51,7 @@ h1, h2, h3 {
     align-items: center;
 }
 
-/* PROFILE CARD */
+/* PROFILE CARD ANIMATION (IMPROVED) */
 .profile-card {
     width: 190px;
     height: 190px;
@@ -64,15 +59,14 @@ h1, h2, h3 {
     overflow: hidden;
     background: linear-gradient(45deg, #00FF89, #00ffaa, #00FF89);
     background-size: 300% 300%;
-    animation: glowMove 4s ease infinite;
+    animation: glowMove 4s ease infinite, floatUp 3s ease-in-out infinite;
     box-shadow: 0 0 25px #00FF89;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* HOVER */
 .profile-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 35px #00FF89;
+    transform: scale(1.07);
+    box-shadow: 0 0 40px #00FF89;
 }
 
 /* IMAGE */
@@ -82,25 +76,57 @@ h1, h2, h3 {
     object-fit: cover;
 }
 
-/* ANIMATION */
+/* PROFILE ANIMATIONS */
 @keyframes glowMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* CARD */
+@keyframes floatUp {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* TITLE (SMALLER + WHITE) */
+h1 {
+    font-family: 'Syne', sans-serif !important;
+    text-align: center !important;
+    color: white !important;
+    font-size: 1.4rem !important;
+}
+
+/* LONGER GREEN LINE */
+hr {
+    border: none;
+    height: 2px;
+    background: #00FF89;
+    width: 85%;
+    margin: auto;
+}
+
+/* TEXT */
+.access-text {
+    color: #00FF89;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+/* CARDS */
 .metric-card {
     background: rgba(19, 19, 31, 0.85);
     border: 1px solid #00FF8933;
     border-radius: 12px;
     padding: 18px;
     text-align: center;
-    transition: transform 0.2s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .metric-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: 0 0 20px #00FF89;
 }
 
 /* MOBILE */
@@ -108,6 +134,10 @@ h1, h2, h3 {
     .profile-card {
         width: 130px;
         height: 130px;
+    }
+
+    h1 {
+        font-size: 1.1rem !important;
     }
 }
 </style>
@@ -128,7 +158,7 @@ st.markdown("</div>", unsafe_allow_html=True)
 # ================= TITLE =================
 st.markdown("""
 <h1>Welcome to my page</h1>
-<hr style="border-color:#00FF89; width:60%; margin:auto;">
+<hr>
 """, unsafe_allow_html=True)
 
 # ================= TEXT =================
