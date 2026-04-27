@@ -58,8 +58,8 @@ h1, h2, h3 {
 
 /* ================= PROFILE CARD ================= */
 .profile-card {
-    width: 180px;
-    height: 180px;
+    width: 150px;
+    height: 160px;
     margin: auto;
     border-radius: 12px;
     overflow: hidden;
