@@ -48,15 +48,9 @@ section[data-testid="stSidebar"] {
     text-align: center;
 }
 
-/* TOP SECTION */
-.top-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* PROFILE WRAPPER */
-.profile-wrapper {
+/* ================= FIXED CENTER PROFILE ================= */
+.profile-container {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -107,7 +101,7 @@ h1 {
     margin-top: 10px;
 }
 
-/* 🔥 IMPROVED GREEN LINE (RESPONSIVE + LIGHT + LONG) */
+/* GREEN LINE */
 .top-line {
     width: min(95%, 750px);
     height: 1.5px;
@@ -174,10 +168,9 @@ h1 {
 """, unsafe_allow_html=True)
 
 # ================= TOP SECTION =================
-st.markdown("<div class='top-section'>", unsafe_allow_html=True)
 
-# PROFILE
-st.markdown("<div class='profile-wrapper'>", unsafe_allow_html=True)
+# PROFILE CENTER FIX
+st.markdown("<div class='profile-container'>", unsafe_allow_html=True)
 
 if img:
     st.markdown(f"""
@@ -188,15 +181,13 @@ if img:
 
 st.markdown("</div>", unsafe_allow_html=True)
 
-# TITLE
+# ================= TITLE =================
 st.markdown("""
 <h1>Welcome to my page</h1>
 """, unsafe_allow_html=True)
 
-# GREEN LINE
+# ================= GREEN LINE =================
 st.markdown("<div class='top-line'></div>", unsafe_allow_html=True)
-
-st.markdown("</div>", unsafe_allow_html=True)
 
 # ================= TYPING TEXT =================
 st.markdown("""
