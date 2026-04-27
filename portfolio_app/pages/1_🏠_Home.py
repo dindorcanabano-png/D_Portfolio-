@@ -1,20 +1,20 @@
 import streamlit as st
-import base64
-import os
+from pathlib import Path
 
-st.set_page_config(page_title="Home | Dindo", page_icon="🏠", layout="wide")
-def get_img_base64(path):
-    base_dir = os.path.abspath(".")  # stable in Streamlit Cloud
-    full_path = os.path.join(base_dir, path)
+# =========================
+# PAGE CONFIG
+# =========================
+st.set_page_config(
+    page_title="Home | Dindo",
+    page_icon="🏠",
+    layout="wide"
+)
 
-    if not os.path.exists(full_path):
-        raise FileNotFoundError(f"Image not found at: {full_path}")
-
-    with open(full_path, "rb") as f:
-        return base64.b64encode(f.read()).decode()
-
-
-img = get_img_base64("assest/me.png")
+# =========================
+# BASE PATH FIX (IMPORTANT)
+# =========================
+BASE_DIR = Path(__file__).resolve().parents[1]
+img_path = BASE_DIR / "assets" / "me.png"
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&family=JetBrains+Mono&display=swap');
