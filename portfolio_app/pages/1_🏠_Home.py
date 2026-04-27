@@ -24,6 +24,13 @@ st.markdown("""
 
 .stApp {
     background: #000000 !important;
+}
+
+/* CENTER MAIN LAYOUT */
+.block-container {
+    padding-top: 2rem;
+    max-width: 1100px;
+    margin: auto;
     text-align: center;
 }
 
@@ -34,12 +41,6 @@ header, [data-testid="stHeader"] {
 /* SIDEBAR */
 section[data-testid="stSidebar"] {
     background-color:#0F5233;
-}
-
-/* CENTER EVERYTHING */
-.block-container {
-    padding-top: 2rem;
-    text-align: center;
 }
 
 /* TEXT */
@@ -57,7 +58,7 @@ h1, h2, h3 {
     text-align: center;
 }
 
-/* ================= PROFILE CARD ================= */
+/* PROFILE WRAPPER */
 .profile-wrapper {
     display: flex;
     justify-content: center;
@@ -66,20 +67,21 @@ h1, h2, h3 {
 
 /* PROFILE CARD */
 .profile-card {
-    width: 180px;
-    height: 180px;
-    border-radius: 14px;
+    width: 190px;
+    height: 190px;
+    border-radius: 16px;
     overflow: hidden;
     background: linear-gradient(45deg, #00FF89, #00ffaa, #00FF89);
     background-size: 300% 300%;
-    animation: glowMove 4s ease infinite, float 3s ease-in-out infinite;
-    box-shadow: 0 0 20px #00FF89;
-    transition: transform 0.3s ease;
+    animation: glowMove 4s ease infinite;
+    box-shadow: 0 0 25px #00FF89;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* HOVER EFFECT (FIXED SIZE CONTROL) */
+/* CLEAN HOVER (NO LAYOUT BREAK) */
 .profile-card:hover {
-    transform: scale(1.08);
+    transform: scale(1.05);
+    box-shadow: 0 0 35px #00FF89;
 }
 
 /* IMAGE */
@@ -89,33 +91,32 @@ h1, h2, h3 {
     object-fit: cover;
 }
 
-/* ANIMATIONS */
+/* ANIMATION */
 @keyframes glowMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
-}
-
-/* ================= CARDS ================= */
+/* CARD */
 .metric-card {
-    background: rgba(19, 19, 31, 0.8);
+    background: rgba(19, 19, 31, 0.85);
     border: 1px solid #00FF8933;
     border-radius: 12px;
     padding: 18px;
     text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.metric-card:hover {
+    transform: translateY(-5px);
 }
 
 /* MOBILE */
 @media (max-width: 768px) {
     .profile-card {
-        width: 120px;
-        height: 120px;
+        width: 130px;
+        height: 130px;
     }
 
     .access-text {
@@ -128,23 +129,22 @@ h1, h2, h3 {
 # ================= HEADER =================
 st.markdown("<div class='access-text'>[ ACCESSING_CORE_SYSTEM ]</div>", unsafe_allow_html=True)
 
-col1, col2 = st.columns([1, 3])
+# FULL CENTER LAYOUT (NO SIDE SHIFT)
+st.markdown("<div class='profile-wrapper'>", unsafe_allow_html=True)
 
-with col1:
-    if img:
-        st.markdown(f"""
-        <div class="profile-wrapper">
-            <div class="profile-card">
-                <img src="data:image/png;base64,{img}">
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-
-with col2:
-    st.markdown("""
-    <h1>Welcome to my page</h1>
-    <hr style="border-color:#00FF89; width:60%; margin:auto;">
+if img:
+    st.markdown(f"""
+    <div class="profile-card">
+        <img src="data:image/png;base64,{img}">
+    </div>
     """, unsafe_allow_html=True)
+
+st.markdown("</div>", unsafe_allow_html=True)
+
+st.markdown("""
+<h1>Welcome to my page</h1>
+<hr style="border-color:#00FF89; width:60%; margin:auto;">
+""", unsafe_allow_html=True)
 
 # ================= TEXT =================
 st.markdown("""
