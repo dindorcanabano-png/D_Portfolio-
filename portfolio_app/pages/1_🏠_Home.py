@@ -1,18 +1,12 @@
 import streamlit as st
 from pathlib import Path
 
-# =========================
-# PAGE CONFIG
-# =========================
 st.set_page_config(
     page_title="Home | Dindo",
     page_icon="🏠",
     layout="wide"
 )
 
-# =========================
-# BASE PATH FIX (IMPORTANT)
-# =========================
 BASE_DIR = Path(__file__).resolve().parents[1]
 img_path = BASE_DIR / "assets" / "me.png"
 st.markdown("""
@@ -163,12 +157,15 @@ st.markdown("<p class='terminal-code'>[ ACCESSING_CORE_SYSTEM ]</p>", unsafe_all
 col_logo, col_title = st.columns([1, 4])
 
 with col_logo:
-    st.markdown(f"""
+    st.markdown("""
     <div class="logo-badge">
-        st.image(str(img_path), width=130)
+    """, unsafe_allow_html=True)
+
+    st.image(str(img_path), width=130)
+
+    st.markdown("""
     </div>
     """, unsafe_allow_html=True)
-with col_title:
     st.markdown("""
     <h1 style="
         font-family:'Syne',sans-serif;
