@@ -1,38 +1,11 @@
 import streamlit as st
 import base64
-import os
+from pathlib import Path
 
 st.set_page_config(page_title="Home | Dindo", page_icon="🏠", layout="wide")
 
-# ================= IMPROVED IMAGE LOADER (NO CRASH VERSION) =================
-def get_img_base64(path):
-    try:
-        # current file location (pages/)
-        base_dir = os.path.dirname(__file__)
-
-        # build full path safely
-        full_path = os.path.join(base_dir, path)
-
-        # normalize path (IMPORTANT for Windows + Cloud)
-        full_path = os.path.normpath(full_path)
-
-        if not os.path.exists(full_path):
-            st.error(f"Image not found: {full_path}")
-            return ""
-
-        with open(full_path, "rb") as f:
-            return base64.b64encode(f.read()).decode()
-
-    except Exception as e:
-        st.error(f"Image loader error: {e}")
-        return ""
-
-
-# ================= FIXED PATH =================
-# ❗ FIX: spelling must be "assets" not "assest"
-img = get_img_base64("assets/me.png")
-# ==============================================
-
+BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR / "pages/assest/me.png"
 
 st.markdown("""
 <style>
