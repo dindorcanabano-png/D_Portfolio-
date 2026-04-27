@@ -43,8 +43,8 @@ h1, h2, h3 {
 
 /* ================= SQUARE PROFILE CARD ================= */
 .profile-card {
-    width: 180px;
-    height: 180px;
+    width: 160px;
+    height: 150px;
     margin: auto;
     border-radius: 12px; /* square but slightly soft */
     overflow: hidden;
