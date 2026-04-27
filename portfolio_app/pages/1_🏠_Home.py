@@ -26,9 +26,9 @@ st.markdown("""
     background: #000000 !important;
 }
 
-/* HEADER */
+/* ❌ REMOVE TOP HEADER */
 header {
-    background-color: #000000 !important;
+    display: none !important;
 }
 
 /* SIDEBAR TEXT WHITE */
@@ -55,7 +55,7 @@ section[data-testid="stSidebar"] {
     align-items: center;
 }
 
-/* PROFILE CARD ANIMATION */
+/* PROFILE CARD */
 .profile-card {
     width: 190px;
     height: 190px;
@@ -65,12 +65,11 @@ section[data-testid="stSidebar"] {
     background-size: 300% 300%;
     animation: glowMove 4s ease infinite, floatUp 3s ease-in-out infinite;
     box-shadow: 0 0 25px #00FF89;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 .profile-card:hover {
     transform: scale(1.07);
-    box-shadow: 0 0 40px #00FF89;
 }
 
 .profile-card img {
@@ -79,7 +78,7 @@ section[data-testid="stSidebar"] {
     object-fit: cover;
 }
 
-/* ANIMATIONS */
+/* ANIMATION */
 @keyframes glowMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -92,22 +91,15 @@ section[data-testid="stSidebar"] {
     100% { transform: translateY(0px); }
 }
 
-/* BIG TITLE + LOOP ANIMATION */
+/* BIG TITLE */
 h1 {
     font-family: 'Syne', sans-serif !important;
-    text-align: center !important;
     color: white !important;
     font-size: 2.4rem !important;
-    animation: fadeText 3s infinite alternate;
+    text-align: center;
 }
 
-/* LOOP EFFECT */
-@keyframes fadeText {
-    0% { opacity: 0.6; transform: scale(1); }
-    100% { opacity: 1; transform: scale(1.05); }
-}
-
-/* GREEN LINE */
+/* LONG LINE */
 hr {
     border: none;
     height: 2px;
@@ -116,19 +108,29 @@ hr {
     margin: auto;
 }
 
-/* LOOP TEXT ANIMATION */
-.loop-text {
+/* ✅ CLEAN TYPING ANIMATION (NO GLITCH) */
+.typing-text {
+    width: fit-content;
+    margin: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #00FF89;
     font-family: 'JetBrains Mono', monospace;
     color: white;
-    font-size: 0.9rem;
-    text-align: center;
-    animation: blinkText 1.5s infinite;
+    font-size: 0.95rem;
+    animation: typing 6s steps(60, end) infinite, blink 0.8s infinite;
 }
 
-@keyframes blinkText {
-    0% { opacity: 1; }
-    50% { opacity: 0.3; }
-    100% { opacity: 1; }
+/* typing effect */
+@keyframes typing {
+    0% { width: 0 }
+    50% { width: 100% }
+    100% { width: 0 }
+}
+
+/* cursor blink */
+@keyframes blink {
+    50% { border-color: transparent; }
 }
 
 /* CARDS */
@@ -138,12 +140,11 @@ hr {
     border-radius: 12px;
     padding: 18px;
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 .metric-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 0 20px #00FF89;
 }
 
 /* MOBILE */
@@ -156,12 +157,13 @@ hr {
     h1 {
         font-size: 1.6rem !important;
     }
+
+    .typing-text {
+        font-size: 0.8rem;
+    }
 }
 </style>
 """, unsafe_allow_html=True)
-
-# ================= HEADER =================
-st.header("Home | Dindo")
 
 # ================= PROFILE =================
 st.markdown("<div class='profile-wrapper'>", unsafe_allow_html=True)
@@ -181,9 +183,9 @@ st.markdown("""
 <hr>
 """, unsafe_allow_html=True)
 
-# ================= LOOP TEXT =================
+# ================= TYPING TEXT =================
 st.markdown("""
-<div class="loop-text">
+<div class="typing-text">
 You can copy the output, but without understanding the logic, it won’t last.
 </div>
 """, unsafe_allow_html=True)
