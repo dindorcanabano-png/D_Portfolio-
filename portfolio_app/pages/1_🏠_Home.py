@@ -158,14 +158,6 @@ col_logo, col_title = st.columns([1, 4])
 
 with col_logo:
     st.image(str(img_path), width=130)
-    <h1 style="
-        font-family:'Syne',sans-serif;
-        font-size:clamp(1.8rem, 4vw, 2.6rem);
-        font-weight:800;
-        background:white;
-        -webkit-background-clip:text;
-        -webkit-text-fill-color:transparent;
-    ">
     Welcome to my page
     </h1>
     <hr style="border-color:#00FF89;">
