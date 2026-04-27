@@ -48,7 +48,12 @@ section[data-testid="stSidebar"] {
     margin: auto;
     text-align: center;
 }
-
+.block-container {
+    padding-top: 5rem !important;
+    max-width: 1100px;
+    margin: auto;
+    text-align: center;
+}
 /* PROFILE CARD */
 .profile-card {
     width: 190px;
