@@ -26,7 +26,7 @@ st.markdown("""
     background: #000000 !important;
 }
 
-/* HEADER FIX */
+/* HEADER */
 header, [data-testid="stHeader"] {
     background-color: #000000 !important;
 }
@@ -36,43 +36,37 @@ section[data-testid="stSidebar"] {
     background-color:#0F5233;
 }
 
-/* TEXT */
+/* TEXT FONTS */
 h1, h2, h3 {
     font-family: 'Syne', sans-serif !important;
 }
 
-/* ================= RESPONSIVE PROFILE CARD ================= */
+/* ================= SQUARE PROFILE CARD ================= */
 .profile-card {
     width: 180px;
     height: 180px;
-    border-radius: 50%;
     margin: auto;
-    padding: 5px;
+    border-radius: 12px; /* square but slightly soft */
+    overflow: hidden;
     background: linear-gradient(45deg, #00FF89, #00ffaa, #00FF89);
     background-size: 300% 300%;
     animation: glowMove 4s ease infinite, float 3s ease-in-out infinite;
     box-shadow: 0 0 25px #00FF89;
 }
 
-/* MOBILE RESIZE */
+/* RESPONSIVE PROFILE */
 @media (max-width: 768px) {
     .profile-card {
         width: 120px;
         height: 120px;
     }
-
-    h1 {
-        font-size: 1.4rem !important;
-        text-align: center;
-    }
 }
 
+/* IMAGE */
 .profile-card img {
     width: 100%;
     height: 100%;
-    border-radius: 50%;
     object-fit: cover;
-    border: 3px solid black;
 }
 
 /* ANIMATIONS */
@@ -88,57 +82,49 @@ h1, h2, h3 {
     100% { transform: translateY(0px); }
 }
 
-/* ================= CARDS RESPONSIVE GRID ================= */
+/* ================= CARDS ================= */
 .metric-card {
     background: rgba(19, 19, 31, 0.8);
     border: 1px solid #00FF8933;
     border-radius: 12px;
     padding: 18px;
     text-align: center;
-    transition: 0.3s;
 }
 
+/* HOVER */
 .metric-card:hover {
     transform: translateY(-5px);
     border-color: #00FF89;
 }
 
-/* MOBILE CARD TEXT */
-@media (max-width: 768px) {
-    .metric-card {
-        padding: 12px;
-    }
-
-    .metric-card div {
-        font-size: 0.8rem !important;
-    }
-}
-
-/* ================= TYPING FIX ================= */
+/* ================= CODE TEXT WHITE ================= */
 .typing-text {
     font-family: 'JetBrains Mono', monospace;
-    color: white;
+    color: #ffffff !important;   /* FIXED WHITE */
     font-size: 0.85rem;
     white-space: nowrap;
     overflow: hidden;
     border-right: 2px solid #00FF89;
     display: inline-block;
     width: 100%;
-    max-width: 100%;
     animation: typing 5s steps(80, end) infinite, blink 0.7s step-end infinite;
 }
 
-/* MOBILE TYPING FIX */
+/* MOBILE FIX */
 @media (max-width: 768px) {
     .typing-text {
         font-size: 0.7rem;
         white-space: normal;
-        animation: none;
         border-right: none;
+        animation: none;
+    }
+
+    h1 {
+        font-size: 1.4rem !important;
+        text-align: center;
     }
 }
 
-/* ANIMATIONS */
 @keyframes typing {
     0% { width: 0ch; }
     50% { width: 80ch; }
@@ -179,7 +165,7 @@ st.markdown("""
 
 st.divider()
 
-# ================= RESPONSIVE STATS =================
+# ================= STATS =================
 stats = [
     ("PROJECTS", "3+", "⚡"),
     ("EXPERIENCE", "2 YRS", "🏆"),
@@ -187,7 +173,6 @@ stats = [
     ("SYSTEM_UP", "99.9%", "⚙️")
 ]
 
-# RESPONSIVE COLUMNS (auto stacks on mobile)
 cols = st.columns(4)
 
 for i, (label, val, icon) in enumerate(stats):
