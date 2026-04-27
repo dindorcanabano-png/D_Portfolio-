@@ -24,6 +24,7 @@ st.markdown("""
 
 .stApp {
     background: #000000 !important;
+    text-align: center;
 }
 
 header, [data-testid="stHeader"] {
@@ -35,47 +36,53 @@ section[data-testid="stSidebar"] {
     background-color:#0F5233;
 }
 
+/* CENTER EVERYTHING */
+.block-container {
+    padding-top: 2rem;
+    text-align: center;
+}
+
 /* TEXT */
 h1, h2, h3 {
     font-family: 'Syne', sans-serif !important;
+    text-align: center !important;
 }
 
-/* ================= RESPONSIVE ACCESS TEXT ================= */
+/* ACCESS TEXT */
 .access-text {
     color: #00FF89;
     font-family: 'JetBrains Mono', monospace;
     font-size: 14px;
     letter-spacing: 2px;
-}
-
-/* MOBILE SMALLER */
-@media (max-width: 768px) {
-    .access-text {
-        font-size: 11px;
-        text-align: center;
-    }
+    text-align: center;
 }
 
 /* ================= PROFILE CARD ================= */
+.profile-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* PROFILE CARD */
 .profile-card {
     width: 180px;
     height: 180px;
-    margin: auto;
-    border-radius: 12px;
+    border-radius: 14px;
     overflow: hidden;
     background: linear-gradient(45deg, #00FF89, #00ffaa, #00FF89);
     background-size: 300% 300%;
     animation: glowMove 4s ease infinite, float 3s ease-in-out infinite;
     box-shadow: 0 0 20px #00FF89;
+    transition: transform 0.3s ease;
 }
 
-@media (max-width: 768px) {
-    .profile-card {
-        width: 120px;
-        height: 120px;
-    }
+/* HOVER EFFECT (FIXED SIZE CONTROL) */
+.profile-card:hover {
+    transform: scale(1.08);
 }
 
+/* IMAGE */
 .profile-card img {
     width: 100%;
     height: 100%;
@@ -104,10 +111,15 @@ h1, h2, h3 {
     text-align: center;
 }
 
-/* MOBILE CARD FIX */
+/* MOBILE */
 @media (max-width: 768px) {
-    .metric-card {
-        padding: 12px;
+    .profile-card {
+        width: 120px;
+        height: 120px;
+    }
+
+    .access-text {
+        font-size: 11px;
     }
 }
 </style>
@@ -116,25 +128,22 @@ h1, h2, h3 {
 # ================= HEADER =================
 st.markdown("<div class='access-text'>[ ACCESSING_CORE_SYSTEM ]</div>", unsafe_allow_html=True)
 
-col1, col2 = st.columns([1, 4])
+col1, col2 = st.columns([1, 3])
 
 with col1:
     if img:
         st.markdown(f"""
-        <div class="profile-card">
-            <img src="data:image/png;base64,{img}">
+        <div class="profile-wrapper">
+            <div class="profile-card">
+                <img src="data:image/png;base64,{img}">
+            </div>
         </div>
         """, unsafe_allow_html=True)
 
 with col2:
     st.markdown("""
-    <h1 style="
-        color:white;
-        font-size:clamp(1.2rem, 2.5vw, 2rem);
-    ">
-    Welcome to my page
-    </h1>
-    <hr style="border-color:#00FF89;">
+    <h1>Welcome to my page</h1>
+    <hr style="border-color:#00FF89; width:60%; margin:auto;">
     """, unsafe_allow_html=True)
 
 # ================= TEXT =================
