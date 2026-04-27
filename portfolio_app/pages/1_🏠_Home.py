@@ -2,7 +2,7 @@ import streamlit as st
 import base64
 import os
 
-st.set_page_config(page_title="Home | Dindo", page_icon="🏠", layout="wide")
+st.set_page_config(page_title, page_icon="🏠", layout="wide")
 
 # ================= IMAGE LOADER =================
 def get_img_base64(filename):
